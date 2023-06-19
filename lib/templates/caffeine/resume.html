@@ -1,0 +1,787 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimal-ui">
+  <title>{{#resume.basics}}{{name}}{{/resume.basics}}</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: "Josefin Sans";
+      font-style: normal;
+      font-weight: 300;
+      src: local("Josefin Sans Light"), local("JosefinSans-Light"),
+        url(https://fonts.gstatic.com/s/josefinsans/v9/C6HYlRF50SGJq1XyXj04zwV_pQ1T3xN3K1c3sB361us.ttf)
+          format("truetype");
+    }
+    @font-face {
+      font-family: "Josefin Sans";
+      font-style: normal;
+      font-weight: 700;
+      src: local("Josefin Sans Bold"), local("JosefinSans-Bold"),
+        url(https://fonts.gstatic.com/s/josefinsans/v9/C6HYlRF50SGJq1XyXj04z306qf9KHRHwsVx7iw5MXmY.ttf)
+          format("truetype");
+    }
+    @font-face {
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 300;
+      src: local("Lato Light"), local("Lato-Light"),
+        url(https://fonts.gstatic.com/s/lato/v11/nj47mAZe0mYUIySgfn0wpQ.ttf)
+          format("truetype");
+    }
+    @font-face {
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 400;
+      src: local("Lato Regular"), local("Lato-Regular"),
+        url(https://fonts.gstatic.com/s/lato/v11/v0SdcGFAl2aezM9Vq_aFTQ.ttf)
+          format("truetype");
+    }
+    @font-face {
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 700;
+      src: local("Lato Bold"), local("Lato-Bold"),
+        url(https://fonts.gstatic.com/s/lato/v11/DvlFBScY1r-FMtZSYIYoYw.ttf)
+          format("truetype");
+    }
+    @font-face {
+      font-family: "Lato";
+      font-style: italic;
+      font-weight: 300;
+      src: local("Lato Light Italic"), local("Lato-LightItalic"),
+        url(https://fonts.gstatic.com/s/lato/v11/2HG_tEPiQ4Z6795cGfdivKCWcynf_cDxXwCLxiixG1c.ttf)
+          format("truetype");
+    }
+    @font-face {
+      font-family: "Lato";
+      font-style: italic;
+      font-weight: 400;
+      src: local("Lato Italic"), local("Lato-Italic"),
+        url(https://fonts.gstatic.com/s/lato/v11/LqowQDslGv4DmUBAfWa2Vw.ttf)
+          format("truetype");
+    }
+    @font-face {
+      font-family: "Lato";
+      font-style: italic;
+      font-weight: 700;
+      src: local("Lato Bold Italic"), local("Lato-BoldItalic"),
+        url(https://fonts.gstatic.com/s/lato/v11/HkF_qI1x_noxlxhrhMQYEKCWcynf_cDxXwCLxiixG1c.ttf)
+          format("truetype");
+    }
+
+    .caffeine {
+      width: 100%;
+      height: 100%;
+      font-family: "Lato", Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      background: #f8f8f8;
+      letter-spacing: 0.3px;
+      color: #39424b;
+    }
+
+    .caffeine h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .caffeine h1 {
+      font-family: "Josefin Sans", Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      font-size: 40px;
+      letter-spacing: 1px;
+    }
+
+    .caffeine h2 {
+      font-family: "Josefin Sans", Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .caffeine h3 {
+      font-family: "Lato", Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      letter-spacing: 0.4px;
+    }
+    .caffeine h3.bold {
+      font-weight: 700;
+    }
+
+    .caffeine h4 {
+      font-family: "Lato", Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+    }
+    .caffeine h4.bold {
+      font-weight: 700;
+    }
+
+    .caffeine h5 {
+      font-family: "Lato", Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+    }
+    .caffeine h5.italic {
+      font-style: italic;
+    }
+
+    .caffeine h6 {
+      font-family: "Lato", Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 10px;
+    }
+
+    .caffeine a {
+      color: inherit;
+      text-decoration: inherit;
+    }
+    .caffeine a:hover {
+      color: #2895f1;
+    }
+    .caffeine a .fa-external-link {
+      font-size: 10px;
+      vertical-align: text-top;
+    }
+
+    .caffeinep,
+    li {
+      font-size: 11px;
+    }
+
+    .caffeine blockquote {
+      font-size: 11px;
+      font-family: "Lato", Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-style: italic;
+      margin: 10px 25px;
+    }
+
+    .caffeine em {
+      color: #999;
+    }
+
+    .caffeine ul {
+      margin: 10px 0 0;
+      -webkit-padding-start: 25px;
+    }
+    .caffeine ul li {
+      padding-left: 10px;
+    }
+    .caffeine ul.minimal {
+      list-style: none;
+      padding: 0;
+    }
+    .caffeine ul.minimal li {
+      margin-bottom: 3px;
+      padding-left: 0;
+    }
+    .caffeine ul.two-column {
+      -webkit-column-count: 2;
+      -webkit-column-gap: 28px;
+      -moz-column-count: 2;
+      column-count: 2;
+      -moz-column-gap: 28px;
+      column-gap: 28px;
+    }
+    .caffeine ul.two-column li {
+      padding-left: 0;
+    }
+
+    @page {
+      size: A4;
+    }
+
+    .caffeine .container {
+      padding-top: 20px;
+    }
+
+    .caffeine .keyline {
+      width: 45px;
+      margin: 8px 0 10px;
+      border-top: 1px solid #56817a;
+    }
+
+    .caffeine .pull-left {
+      float: left;
+    }
+
+    .caffeine .pull-right {
+      float: right;
+    }
+
+    .caffeine .clearfix:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .caffeine .profile-pic {
+      margin-top: -5px;
+      margin-right: 18px;
+    }
+    .caffeine .profile-pic img {
+      height: 52px;
+      width: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #56817a;
+    }
+
+    .caffeine .summary {
+      margin: 5px 0 5px;
+    }
+
+    /* Layouts */
+    .caffeine .page {
+      background: white;
+      width: 100%;
+      min-height: 100%;
+      display: block;
+      margin: 0 auto;
+      border-top: 10px solid #56817a;
+      padding: 36px 22px 30px 34px;
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+    }
+    .caffeine .page:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .caffeine .left-column {
+      float: left;
+      width: 160px;
+      margin-right: 20px;
+      word-wrap: break-word;
+    }
+
+    .caffeine .right-column {
+      width: auto;
+      overflow: hidden;
+    }
+
+    .caffeine .item {
+      margin-bottom: 15px;
+    }
+    .caffeine .item:last-child {
+      margin-bottom: 0;
+    }
+
+    @media print {
+      body {
+        margin: 0;
+      }
+      .page {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 36px 0 30px;
+        box-shadow: none;
+      }
+      .page .resume-header,
+      .page .resume-content {
+        padding: 0 22px 0 34px;
+      }
+      .container {
+        page-break-inside: avoid;
+      }
+      .work-container .item {
+        page-break-inside: avoid;
+      }
+      .fa-external-link {
+        display: none;
+      }
+    }
+
+    /* Components */
+    .info-tag-container {
+      margin-bottom: 5px;
+    }
+    .info-tag-container .fa {
+      font-size: 14px;
+      width: 12px;
+      margin-right: 5px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    .info-tag-container .fa.fa-map-marker {
+      font-size: 16px;
+    }
+    .info-tag-container .fa.fa-mobile {
+      font-size: 18px;
+    }
+    .info-tag-container .fa.fa-envelope-o {
+      font-size: 12px;
+    }
+    .info-tag-container .fa.fa-desktop {
+      font-size: 11px;
+    }
+    .info-tag-container .fa.fa-external-link {
+      width: auto;
+      font-size: inherit;
+      vertical-align: text-top;
+    }
+    .info-tag-container .info-text {
+      font-size: 9px;
+      display: inline-block;
+      vertical-align: middle;
+      width: 139px;
+    }
+    .references-container .fa {
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+    <div class="caffeine">
+        <main id="resume" class="page">
+            {{#resume.basics}}
+            <header class="resume-header clearfix">
+            <div class="profile-header pull-left">
+                <h1>{{name}}</h1>
+                <h2>{{label}}</h2>
+            </div>
+            <div class="profile-pic pull-right">
+                {{#if image}}
+                <img src="{{image}}" crossorigin="anonymous" alt="profile-pic">
+                {{/if}}
+            </div>
+            </header>
+            {{/resume.basics}}
+            <div class="resume-content">
+              <aside class="left-column">
+                {{#resume.basics}}
+                <div class="container about-container">
+                <div class="title">
+                    <h3>About</h3>
+                    <div class="keyline"></div>
+                </div>
+        
+                {{#if location}}
+                    {{#location}}
+                    <div class="info-tag-container">
+                        <i class="fa fa-map-marker"></i>
+                        <h6 class="info-text">{{ formatAddress address city region postalCode countryCode }}</h6>
+                    </div>
+                    {{/location}}
+                {{/if}}
+        
+                {{#if email}}
+                    <div class="info-tag-container">
+                        <i class="fa fa-envelope-o"></i>
+                        <h6 class="info-text">{{{this.email}}}</h6>
+                    </div>
+                {{/if}}
+        
+                {{#if phone}}
+                    <div class="info-tag-container">
+                        <i class="fa fa-mobile"></i>
+                        <h6 class="info-text">{{{this.phone}}}</h6>
+                    </div>
+                {{/if}}
+        
+                {{#if website}}
+                    <div class="info-tag-container">
+                        <i class="fa fa-desktop"></i>
+                        <h6 class="info-text">
+                            <a href="{{this.website}}" target="_blank">
+                            {{removeProtocol this.website}} <i class="fa fa-external-link" aria-hidden="true"></i>
+                            </a>
+                        </h6>
+                    </div>
+                {{/if}}
+        
+                {{#if profiles}}
+                    {{#each profiles}}
+                        {{#if network}}
+                            {{#if username}}
+                                {{#if (is (lowercase network) "linkedin")}}
+                                    <div class="info-tag-container">
+                                    <i class="fa fa-linkedin-square"></i>
+                                    <h6 class="info-text">{{concat 'in/' this.username}}</h6>
+                                </div>
+                                {{else}}
+                                    <div class="info-tag-container">
+                                    <i class="fa {{concat "fa-" (lowercase network)}}"></i>
+                                    <h6 class="info-text">{{this.username}}</h6>
+                                {{/if}}
+                            {{/if}}
+                        {{/if}}
+                    {{/each}}
+                {{/if}}
+                </section>
+                {{/resume.basics}}
+                {{#if resume.skills.length}}
+                <div class="skills-container">
+                {{#each resume.skills}}
+                <section class="container">
+                    {{#if name}}
+                    <div class="title">
+                        <h3>{{name}}</h3>
+                        <div class="keyline"></div>
+                    </div>
+                    {{/if}}
+                    {{#if level}}
+                    <h4 class="bold">{{level}}</h4>
+                    {{/if}}
+                    {{#if keywords.length}}
+                    <ul class="minimal">
+                        {{#each keywords}}
+                        <li>
+                        <h6>{{.}}</h6>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    {{/if}}
+                </section>
+                {{/each}}
+                </div>
+                {{/if}}
+                {{#if resume.languages.length}}
+                <div class="container languages-container">
+                <div class="title">
+                    <h3>Languages</h3>
+                    <div class="keyline"></div>
+                </div>
+                <ul class="minimal">
+                    {{#each resume.languages}}
+                    <li>
+                    <h6>{{language}} {{#if fluency}}<em>({{fluency}})</em>{{/if}}</h6>
+                    </li>
+                    {{/each}}
+                </ul>
+                </div>
+                {{/if}}
+                {{#if resume.interests.length}}
+                <div class="container interests-container">
+                <div class="title">
+                    <h3>Interests</h3>
+                    <div class="keyline"></div>
+                </div>
+        
+                {{#each resume.interests}}
+                    <section class="item">
+                    {{#if name}}
+                        <h4 class="bold">{{name}}</h4>
+                    {{/if}}
+                    {{#if keywords.length}}
+                        <ul class="minimal">
+                        {{#each keywords}}
+                            <li>{{.}}</li>
+                        {{/each}}
+                        </ul>
+                    {{/if}}
+                    </section>
+                {{/each}}
+                </div>
+                {{/if}}
+              </aside>
+              <div class="right-column">
+                {{#resume.basics}}
+                {{#if summary}}
+                <div class="container summary-container">
+                <div class="title">
+                    <h3>Summary</h3>
+                    <div class="keyline"></div>
+                </div>
+                <p class="summary">
+                    {{summary}}
+                </p>
+                </div>
+                {{/if}}
+                {{/resume.basics}}
+                {{#if resume.work.length}}
+                <div class="container work-container">
+                <div class="title">
+                    <h3>Experience</h3>
+                    <div class="keyline"></div>
+                </div>
+        
+                {{#each resume.work}}
+                <section class="item">
+                    <div class="section-header clearfix">
+                    {{#if this.company}}
+                    <h3 class="bold pull-left">
+                        {{#if website}}
+                        <a href="{{website}}" target="_blank">
+                            {{this.company}} <i class="fa fa-external-link" aria-hidden="true"></i>
+                        </a>
+                        {{else}}
+                        {{this.company}}
+                        {{/if}}
+                    </h3>
+                    {{/if}}
+                    <h5 class="italic pull-right">
+                        {{#if startDate}}
+                        <span class="startDate">{{formatDate startDate}}</span>
+                        {{#if endDate}}
+                        <span class="endDate"> - {{formatDate endDate}}</span>
+                        {{else}}
+                        <span class="endDate"> - Present</span>
+                        {{/if}}
+                        {{else if releaseDate}}
+                        {{formatDate releaseDate}}
+                        {{/if}}
+                    </h5>
+                    </div>
+        
+                    {{#if position}}
+                    <h4>{{position}}</h4>
+                    {{/if}}
+        
+                    {{#if summary}}
+                    <p class="summary">{{summary}}</p>
+                    {{/if}}
+        
+                    {{#if highlights.length}}
+                    <ul>
+                        {{#each highlights}}
+                        <li>{{.}}</li>
+                        {{/each}}
+                    </ul>
+                    {{/if}}
+                </section>
+                {{/each}}
+                </div>
+                {{/if}}
+                {{#if resume.volunteer.length}}
+                <div class="container volunteer-container">
+                <div class="title">
+                    <h3>Volunteer</h3>
+                    <div class="keyline"></div>
+                </div>
+        
+                {{#each resume.volunteer}}
+                <section class="item">
+                    <div class="section-header clearfix">
+                    {{#if this.organization}}
+                    <h3 class="bold pull-left">
+                        {{#if website}}
+                        <a href="{{website}}" target="_blank">
+                            {{this.organization}} <i class="fa fa-external-link" aria-hidden="true"></i>
+                        </a>
+                        {{else}}
+                        {{this.organization}}
+                        {{/if}}
+                    </h3>
+                    {{/if}}
+                    <h5 class="italic pull-right">
+                        {{#if startDate}}
+                        <span class="startDate">{{formatDate startDate}}</span>
+                        {{#if endDate}}
+                        <span class="endDate"> - {{formatDate endDate}}</span>
+                        {{else}}
+                        <span class="endDate"> - Present</span>
+                        {{/if}}
+                        {{else if releaseDate}}
+                        {{formatDate releaseDate}}
+                        {{/if}}
+                    </h5>
+                    </div>
+                    {{#if position}}
+                    <h5>{{position}}</h5>
+                    {{/if}}
+        
+                    {{#if summary}}
+                    <p class="summary">{{summary}}</p>
+                    {{/if}}
+        
+                    {{#if highlights.length}}
+                    <ul>
+                        {{#each highlights}}
+                        <li>{{.}}</li>
+                        {{/each}}
+                    </ul>
+                    {{/if}}
+                </section>
+                {{/each}}
+                </div>
+                {{/if}}
+                {{#if resume.education.length}}
+                <div class="container education-container">
+                <div class="title">
+                    <h3>Education</h3>
+                    <div class="keyline"></div>
+                </div> {{#each resume.education}}
+                <section class="item">
+                    <div class="section-header clearfix">
+                    {{#if this.institution}}
+                    <h3 class="bold pull-left">
+                        {{#if website}}
+                        <a href="{{website}}" target="_blank">
+                            {{this.institution}} <i class="fa fa-external-link" aria-hidden="true"></i>
+                        </a>
+                        {{else}}
+                        {{this.institution}}
+                        {{/if}}
+                    </h3>
+                    {{/if}}
+                    <h5 class="italic pull-right">
+                        {{#if startDate}}
+                        <span class="startDate">{{formatDate startDate}}</span>
+                        {{#if endDate}}
+                        <span class="endDate"> - {{formatDate endDate}}</span>
+                        {{else}}
+                        <span class="endDate"> - Present</span>
+                        {{/if}}
+                        {{else if releaseDate}}
+                        {{formatDate releaseDate}}
+                        {{/if}}
+                    </h5>
+                    </div>
+                    {{#if location}}
+                    <h5 class="location">{{location}}</h5>
+                    {{/if}}
+        
+                    <h4>{{#if studyType}}{{studyType}} {{/if}}{{#if area}}{{area}}{{/if}}</h4>
+        
+                    {{#if gpa}}
+                    <h5>{{gpa}}</h5>
+                    {{/if}}
+                    {{#if specialization}}
+                    <h5 class="specialization">{{specialization}}</h5>
+                    {{/if}}
+                    {{#if courses.length}}
+                    <ul class="two-column">
+                        {{#each courses}}
+                        <li>{{.}}</li>
+                        {{/each}}
+                    </ul>
+                    {{/if}}
+                </section>
+                {{/each}}
+                </div>
+                {{/if}}
+                {{#if resume.awards.length}}
+                <div class="container awards-container">
+                <div class="title">
+                    <h3>Awards</h3>
+                    <div class="keyline"></div>
+                </div>
+        
+                {{#each resume.awards}}
+                    <section class="item">
+                    <div class="section-header clearfix">
+                    {{#if this.title}}
+                    <h3 class="bold pull-left">
+                        {{#if website}}
+                        <a href="{{website}}" target="_blank">
+                            {{this.title}} <i class="fa fa-external-link" aria-hidden="true"></i>
+                        </a>
+                        {{else}}
+                        {{this.title}}
+                        {{/if}}
+                    </h3>
+                    {{/if}}
+                    <h5 class="italic pull-right">
+                        {{#if startDate}}
+                        <span class="startDate">{{formatDate startDate}}</span>
+                        {{#if endDate}}
+                        <span class="endDate"> - {{formatDate endDate}}</span>
+                        {{else}}
+                        <span class="endDate"> - Present</span>
+                        {{/if}}
+                        {{else if releaseDate}}
+                        {{formatDate releaseDate}}
+                        {{/if}}
+                    </h5>
+                    </div>
+        
+                    {{#if awarder}}
+                        <h5 class="awarder">{{awarder}}</h5>
+                    {{/if}}
+        
+                    {{#if summary}}
+                        <p class="summary">{{summary}}</p>
+                    {{/if}}
+                    </section>
+                {{/each}}
+                </div>
+                {{/if}}
+                {{#if resume.publications.length}}
+                <div class="container publications-container">
+                <div class="title">
+                    <h3>Publications</h3>
+                    <div class="keyline"></div>
+                </div>
+        
+                {{#each resume.publications}}
+                <section class="item">
+                    <div class="section-header clearfix">
+                    {{#if this.name}}
+                    <h3 class="bold pull-left">
+                        {{#if website}}
+                        <a href="{{website}}" target="_blank">
+                            {{this.name}} <i class="fa fa-external-link" aria-hidden="true"></i>
+                        </a>
+                        {{else}}
+                        {{this.name}}
+                        {{/if}}
+                    </h3>
+                    {{/if}}
+                    <h5 class="italic pull-right">
+                        {{#if startDate}}
+                        <span class="startDate">{{formatDate startDate}}</span>
+                        {{#if endDate}}
+                        <span class="endDate"> - {{formatDate endDate}}</span>
+                        {{else}}
+                        <span class="endDate"> - Present</span>
+                        {{/if}}
+                        {{else if releaseDate}}
+                        {{formatDate releaseDate}}
+                        {{/if}}
+                    </h5>
+                    </div>
+        
+                    {{#if publisher}}
+                    <h5 class="awarder">{{publisher}}</h5>
+                    {{/if}}
+        
+                    {{#if summary}}
+                    <p class="summary">{{summary}}</p>
+                    {{/if}}
+        
+                </section>
+                {{/each}}
+                </div>
+                {{/if}}
+                {{#if resume.references.length}}
+                <div class="container references-container">
+                <div class="title">
+                    <h3>References</h3>
+                    <div class="keyline"></div>
+                </div>
+        
+                {{#each resume.references}}
+                <section class="item clearfix">
+                    {{#if reference}}
+                    <i class="fa fa-quote-left pull-left" aria-hidden="true"></i>
+                    <blockquote>
+                        {{reference}}
+                    </blockquote>
+                    {{/if}}
+        
+                    {{#if name}}
+                    <h5 class="pull-right"> — {{name}}</h5>
+                    {{/if}}
+                </section>
+                {{/each}}
+                </div>
+                {{/if}}
+              </div>
+            </div>
+          </main>
+    </div>
+</body>
+
+</html>
