@@ -1,2 +1,2 @@
-export * from './ResumeForm';
+export * from './ResumeEditor';
 export * from './types';
