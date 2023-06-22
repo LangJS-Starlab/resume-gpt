@@ -6,7 +6,9 @@ import { FieldValues } from 'react-hook-form';
 import { FormFieldProps } from '../types';
 
 type InputFieldProps<T extends FieldValues> = FormFieldProps<T> &
-  Omit<InputProps, 'name'>;
+  Omit<InputProps, 'name'> & {
+    onValueChange?: (value: string) => void;
+  };
 
 export function InputField<T extends FieldValues>(props: InputFieldProps<T>) {
   const { register, name, id, formState, containerClassName, ...rest } = props;
@@ -20,13 +22,19 @@ export function InputField<T extends FieldValues>(props: InputFieldProps<T>) {
     }
   };
 
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    props.onValueChange?.(e.target.value);
+  };
+
   return (
     <Input
       id={id || name}
       containerClassName={cn('my-4', containerClassName)}
       isError={!!error}
       helperText={renderHelperText()}
-      {...register(name)}
+      {...register(name, {
+        onChange: handleOnChange
+      })}
       {...rest}
     />
   );

@@ -3,6 +3,7 @@ import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/
 import { Button } from '@/components/ui/Button';
 import { FormFieldProps, InputField, MonthYearDateField, TextAreaField } from '@/components/ui/form';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { set } from 'lodash';
 import React from 'react';
 import {
   FieldArrayWithId,
@@ -38,7 +39,7 @@ export const ReferenceField = ({
 
   React.useEffect(() => {
     field.name && setTitle(field.name);
-  }, [field.name]);
+  }, [field.name, index, setValue]);
 
   const onRemoveItem = (index: number) => {
     return () => {
@@ -46,8 +47,8 @@ export const ReferenceField = ({
     };
   };
 
-  const onNameFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+  const onNameFieldChange = (value: string) => {
+    setTitle(value);
   };
 
   return (
@@ -83,7 +84,7 @@ export const ReferenceField = ({
           <InputField
             name={`references.${index}.name` as const}
             label="Reference"
-            onChange={onNameFieldChange}
+            onValueChange={onNameFieldChange}
             {...fieldProps}
           />
         </div>
