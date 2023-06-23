@@ -14,7 +14,6 @@ export const createUser = async (user: User | AdapterUser, profile?: Profile) =>
 
   if (!dbUser) {
     const resumeData = profile ? await createResume(profile) : null
-    console.log("🚀 ~ file: user.ts:16 ~ createUser ~ resumeData:", resumeData)
     dbUser = await db.user.create({
       data: {
         email: user.email,

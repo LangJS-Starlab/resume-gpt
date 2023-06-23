@@ -240,6 +240,33 @@
       margin: 5px 0 5px;
     }
 
+    .caffeine .skills-container .container {
+      margin-top: 14px;
+      padding: 0;
+    }
+
+    .caffeine .skills-container p {
+      font-size: 14px;
+    }
+
+    .caffeine .languages-container.container {
+      margin-top: 14px;
+      padding: 0;
+    }
+
+    .caffeine .languages-container p {
+      font-size: 14px;
+    }
+
+    .caffeine .interests-container.container {
+      margin-top: 14px;
+      padding: 0;
+    }
+
+    .caffeine .interests-container p {
+      font-size: 14px;
+    }
+
     /* Layouts */
     .caffeine .page {
       background: white;
@@ -249,7 +276,8 @@
       margin: 0 auto;
       border-top: 10px solid #56817a;
       padding: 36px 22px 30px 34px;
-      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+      /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
     }
     .caffeine .page:after {
       content: "";
@@ -427,12 +455,9 @@
                 <section class="container">
                     {{#if name}}
                     <div class="title">
-                        <h3>{{name}}</h3>
+                        <p>{{name}}</p>
                         <div class="keyline"></div>
                     </div>
-                    {{/if}}
-                    {{#if level}}
-                    <h4 class="bold">{{level}}</h4>
                     {{/if}}
                     {{#if keywords.length}}
                     <ul class="minimal">
@@ -450,7 +475,7 @@
                 {{#if resume.languages.length}}
                 <div class="container languages-container">
                 <div class="title">
-                    <h3>Languages</h3>
+                    <p>Languages</p>
                     <div class="keyline"></div>
                 </div>
                 <ul class="minimal">
@@ -472,7 +497,7 @@
                 {{#each resume.interests}}
                     <section class="item">
                     {{#if name}}
-                        <h4 class="bold">{{name}}</h4>
+                        <p class="bold">{{name}}</p>
                     {{/if}}
                     {{#if keywords.length}}
                         <ul class="minimal">
@@ -539,8 +564,8 @@
                     <h4>{{position}}</h4>
                     {{/if}}
         
-                    {{#if summary}}
-                    <p class="summary">{{summary}}</p>
+                    {{#if description}}
+                    <p class="summary">{{description}}</p>
                     {{/if}}
         
                     {{#if highlights.length}}

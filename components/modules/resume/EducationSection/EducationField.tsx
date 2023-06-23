@@ -108,6 +108,7 @@ export const EducationField = ({
             monthSelectLabel="Start month"
             yearSelectLabel="Start year"
             setValue={setValue}
+            value={field.startDate}
             {...fieldProps}
           />
           <MonthYearDateField
@@ -115,6 +116,7 @@ export const EducationField = ({
             monthSelectLabel="End month"
             yearSelectLabel="End year"
             setValue={setValue}
+            value={field.endDate}
             {...fieldProps}
           />
         </div>

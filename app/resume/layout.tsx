@@ -1,10 +1,10 @@
 import { SiteHeader } from "@/components/SiteHeader"
 
-type AuthLayoutProps = {
+type ResumeLayoutProps = {
     children: React.ReactNode
   }
   
-export default function AuthLayout({ children }: AuthLayoutProps) {
+export default function ResumeLayout({ children }: ResumeLayoutProps) {
   return (
     <div>
       <SiteHeader/>

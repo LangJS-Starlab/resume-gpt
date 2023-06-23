@@ -8,16 +8,14 @@ import {
   FieldArrayWithId,
   UseFieldArrayRemove,
   UseFormSetValue,
+  useFieldArray,
+  useFormContext,
 } from 'react-hook-form';
 import { CvFormValues } from '../types';
-
-type EducationFieldProps = {
-  field: FieldArrayWithId<CvFormValues, 'education'>;
-  index: number;
-  fieldProps: Omit<FormFieldProps<CvFormValues>, 'name'>;
-  setValue: UseFormSetValue<CvFormValues>;
-  remove: UseFieldArrayRemove;
-};
+import { WorkHighlightField, WorkHighlightFieldProps } from './WorkHighlightField';
+import { Section } from '@/components/ui/Section';
+import { Flex } from '@/components/ui/Flex';
+import { Heading4, Paragraph } from '@/components/ui/Typography';
 
 type WorkExperienceFieldProps = {
   field: FieldArrayWithId<CvFormValues, 'work'>;
@@ -34,7 +32,13 @@ export const WorkExperienceField = ({
   setValue,
   remove,
 }: WorkExperienceFieldProps) => {
+  const { control } = useFormContext<CvFormValues>();
   const [title, setTitle] = React.useState('');
+
+  const { fields: highlightFields, append: appendHighlight, remove: removeHighlight } = useFieldArray({
+    name: `work.${index}.highlights`,
+    control,
+  });
 
   React.useEffect(() => {
     field.position && setTitle(field.position);
@@ -46,8 +50,12 @@ export const WorkExperienceField = ({
     };
   };
 
-  const onPositionFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+  const onPositionFieldChange = (value: string) => {
+    setTitle(value);
+  };
+
+  const onAddNewHighlightItem = () => {
+    appendHighlight('');
   };
 
   return (
@@ -84,11 +92,11 @@ export const WorkExperienceField = ({
             <InputField
               name={`work.${index}.position` as const}
               label="Position"
-              onChange={onPositionFieldChange}
+              onValueChange={onPositionFieldChange}
               {...fieldProps}
             />
             <InputField
-              name={`work.${index}.name` as const}
+              name={`work.${index}.company` as const}
               label="Company Name"
               {...fieldProps}
             />
@@ -111,11 +119,34 @@ export const WorkExperienceField = ({
               {...fieldProps}
             />
           </div>
+          <div>
+            <Flex direction="row" justify="between" align="center">
+              <Paragraph className='font-medium'>
+                Highlights
+              </Paragraph>
+              <Button type='button' variant="outline" onClick={onAddNewHighlightItem}>
+                <Icons.plus className="mr-2" />
+                Add
+              </Button>
+            </Flex>
+            <div className='px-4'>
+              {highlightFields.map((field, highlightIndex) => {
+                const props: WorkHighlightFieldProps = {
+                  workIndex: index,
+                  highlightIndex,
+                  remove,
+                  fieldProps,
+                };
+                return <WorkHighlightField key={field.id} {...props} />;
+              })}
+            </div>
+          </div>
           <MonthYearDateField
             name={`work.${index}.startDate` as const}
             monthSelectLabel="Start month"
             yearSelectLabel="Start year"
             setValue={setValue}
+            value={field.startDate}
             {...fieldProps}
           />
           <MonthYearDateField
@@ -123,6 +154,7 @@ export const WorkExperienceField = ({
             monthSelectLabel="End month"
             yearSelectLabel="End year"
             setValue={setValue}
+            value={field.endDate}
             {...fieldProps}
           />
         </div>

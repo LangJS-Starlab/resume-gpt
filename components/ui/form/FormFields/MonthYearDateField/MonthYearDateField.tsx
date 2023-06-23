@@ -1,5 +1,5 @@
 import { Label } from '@/components/ui/Label';
-import { Select, SelectContent, SelectItem } from '@/components/ui/Select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
 import formatISO from 'date-fns/formatISO';
 import get from 'lodash/get';
 import React from 'react';
@@ -14,7 +14,7 @@ const monthOptions = [...Array(12).keys()].map((i) => {
 
 const getYearOptions = () => {
   const tenYearsFromNow = new Date().getFullYear() + 10;
-  return [...Array(111).keys()].map((n) => {
+  return [...Array(50).keys()].map((n) => {
     const year = `${tenYearsFromNow - n}`;
     return {
       label: year,
@@ -27,6 +27,7 @@ type MonthYearDateFieldProps<T extends FieldValues> = FormFieldProps<T> & {
   monthSelectLabel?: string;
   yearSelectLabel?: string;
   setValue: SetFieldValue<T>;
+  value?: string
 };
 
 export function MonthYearDateField<T extends FieldValues>(
@@ -35,17 +36,19 @@ export function MonthYearDateField<T extends FieldValues>(
   const {
     register,
     name,
+    value,
     setValue,
     monthSelectLabel = 'Select month',
     yearSelectLabel = 'Select year',
     formState,
     ...rest
   } = props;
-  const [month, setMonth] = React.useState<string>();
-  const [year, setYear] = React.useState<string>();
+  const monthValue = value ? `${new Date(value).getMonth() + 1}` : undefined;
+  const yearValue = value ? `${new Date(value).getFullYear()}` : undefined;
+  const [month, setMonth] = React.useState<string | undefined>(monthValue);
+  const [year, setYear] = React.useState<string | undefined>(yearValue);
   const { errors } = formState;
   const error = get(errors, name);
-  const errorText = error?.message;
 
   React.useEffect(() => {
     if (!month || !year) {
@@ -70,9 +73,11 @@ export function MonthYearDateField<T extends FieldValues>(
         {monthSelectLabel ? (
           <Label htmlFor={`${name}-month`}>{monthSelectLabel}</Label>
         ) : null}
-        <Select id={`${name}-month`} onValueChange={onMonthChange}>
+        <Select name={`${name}-month`} value={month} onValueChange={onMonthChange}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select month" />
+          </SelectTrigger>
           <SelectContent>
-
             {monthOptions.map((month) => (
               <SelectItem key={month.value} value={month.value}>
                 {month.label}
@@ -85,9 +90,11 @@ export function MonthYearDateField<T extends FieldValues>(
         {yearSelectLabel ? (
           <Label htmlFor={`${name}-year`}>{yearSelectLabel}</Label>
         ) : null}
-        <Select id={`${name}-year`} onValueChange={onYearChange}>
-          <SelectContent>
-
+        <Select name={`${name}-year`} value={year} onValueChange={onYearChange}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select year" />
+          </SelectTrigger>
+          <SelectContent className='h-80'>
             {getYearOptions().map((year) => (
               <SelectItem key={year.value} value={year.value}>
                 {year.label}

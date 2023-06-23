@@ -6,8 +6,8 @@ export const siteConfig = {
     "Create a perfect resume in seconds and land your dream job with Resume GPT.",
   mainNav: [
     {
-      title: "Home",
-      href: "/",
+      title: "My Resume",
+      href: "/resume",
     },
   ],
   links: {

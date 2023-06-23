@@ -88,7 +88,7 @@ export const CVSchema = z
       .array(
         z
           .object({
-            name: z.string().describe('e.g. Facebook').optional(),
+            company: z.string().describe('e.g. Facebook').optional(),
             location: z.string().describe('e.g. Menlo Park, CA').optional(),
             description: z
               .string()

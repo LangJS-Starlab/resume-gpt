@@ -30,7 +30,7 @@ export const WorkExperienceSection = () => {
       startDate: formatISO(new Date()),
       endDate: formatISO(new Date()),
       location: '',
-      name: '',
+      company: '',
       position: '',
       url: '',
     });
