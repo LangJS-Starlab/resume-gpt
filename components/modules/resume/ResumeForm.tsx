@@ -7,13 +7,8 @@ import { ReferenceSection } from './ReferenceSection';
 import { CvFormValues } from './types';
 import { WorkExperienceSection } from './WorkExperienceSection';
 
-type ResumeFormProps = {
-  defaultValues?: CvFormValues
-  email?: string | null
-  templateHtml?: string
-}
 
-export const ResumeForm = ({ defaultValues, email, templateHtml }: ResumeFormProps) => {
+export const ResumeForm = () => {
   return (
     <form>
       <PersonalDetailsSection />

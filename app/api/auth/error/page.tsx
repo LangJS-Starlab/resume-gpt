@@ -6,7 +6,6 @@ export const metadata: Metadata = {
 }
 
 export default function ErrorPage(props: {}) {
-  console.log("🚀 ~ file: page.tsx:12 ~ ErrorPage ~ props:", props)
   return (
     <>
       <p>error</p>

@@ -97,6 +97,7 @@ export const CertificateField = ({
             monthSelectLabel="Month"
             yearSelectLabel="Year"
             setValue={setValue}
+            value={field.date}
             {...fieldProps}
           />
         </div>

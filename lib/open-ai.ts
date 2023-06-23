@@ -19,16 +19,20 @@ function prepareChatPrompt<T, ExtraArgs = unknown>(
   }
 }
 
-export const createResume = async (profile: Profile) => {
+export const createResume = async (profile: any) => {
+  console.log("🚀 ~ file: open-ai.ts:23 ~ createResume ~ profile:", profile)
   let resumeData
 
   const prompt = prepareChatPrompt(
     `
-  Convert this resume to the JSON Resume standard as defined at https://jsonresume.org/schema/
-  
-  Resume: """
-  {{resumeText}}
-  """
+    Github Profile: """
+    {{profileString}}
+    """
+
+    Based on the Github Profile above, generate a json following JSON Resume standard as defined at https://github.com/jsonresume/resume-schema/blob/master/schema.json
+    
+    The json response should contains all the keys, you should fill in as much information as possible.
+    You should grab the data from the linkedin profile: https://www.linkedin.com/in/${profile.login}/ if any to fill in the missing information.
   `,
     async response => {
       const results = parseOpenAIJsonResponse(response)
@@ -41,11 +45,11 @@ export const createResume = async (profile: Profile) => {
     }
   )
 
-  const resumeText = cleanJsonString(JSON.stringify(profile))
+  const profileString = cleanJsonString(JSON.stringify(profile))
 
   const request: CreateChatCompletionRequest = {
     model: 'gpt-3.5-turbo',
-    messages: [{ role: 'user', content: prompt.text.replaceAll('{{resumeText}}', resumeText) }],
+    messages: [{ role: 'user', content: prompt.text.replaceAll('{{profileString}}', profileString) }],
     temperature: 0,
     user: profile.name,
   }
