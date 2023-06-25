@@ -1,11 +1,13 @@
 import { CvFormValues } from "@/components/modules/resume";
 import { Prisma } from "@prisma/client";
-import { Profile, User } from "next-auth";
+import { User } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
+import { GithubProfile } from "next-auth/providers/github";
 import { createResume } from "../open-ai";
+import { getCurrentUser } from "../session";
 import { db } from "./db";
 
-export const createUser = async (user: User | AdapterUser, profile?: Profile) => {
+export const createUser = async (user: User | AdapterUser, profile?: GithubProfile) => {
   let dbUser = await db.user.findFirst({
     where: {
       email: user.email,
@@ -27,14 +29,15 @@ export const createUser = async (user: User | AdapterUser, profile?: Profile) =>
   return dbUser
 }
 
-export const getUser = async (email: string) => {
-  const user = await db.user.findFirst({
+export const getUser = async () => {
+  const user = await getCurrentUser()
+  const dbUser = await db.user.findFirst({
     where: {
-      email,
+      id: user?.id,
     },
   })
 
-  return user
+  return dbUser
 }
 
 export const updateUserResumeData = async (email: string, resumeData: CvFormValues) => {

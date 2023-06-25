@@ -18,7 +18,7 @@ export const PersonalDetailsSection = () => {
         <InputField name="basics.label" label="Job Title" {...fieldProps} />
         <InputField name="basics.email" label="Email" {...fieldProps} />
         <InputField name="basics.phone" label="Phone Number" {...fieldProps} />
-        <InputField name="basics.url" label="Website" {...fieldProps} />
+        <InputField name="basics.website" label="Website" {...fieldProps} />
         <InputField
           name="basics.location.address"
           label="Address"

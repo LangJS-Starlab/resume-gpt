@@ -11,8 +11,9 @@ export default function LogoutButton() {
   }
       
   return (
-    <Button variant="link" onClick={onSignOut}>
-      <Icons.logout className="h-5 w-5" />
+    <Button variant="ghost" onClick={onSignOut} className="w-full justify-start">
+      <Icons.logout className="mr-2 h-5 w-5" />
+      <span>Log out</span>
     </Button>
   )
 }

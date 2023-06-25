@@ -5,24 +5,18 @@ import { getCurrentUser } from "@/lib/session"
 import { redirect } from "next/navigation"
 import { renderResumeTemplate } from "@/lib/templates"
 
-async function getUserData(email: string) {
-  const res = await getUser(email)
-  return res
-}
-
-export default async function IndexPage() {
+export default async function ResumePage() {
   const userSession = await getCurrentUser()
 
   if (!userSession) {
     redirect(`/login`)
   }
 
-  const userEmail = userSession?.email
-  const user = userEmail ? await getUserData(userEmail) : null
-  const resumeData = user?.resumeData as CvFormValues
-  const resumeHtmlData = renderResumeTemplate(resumeData)
+  const user = await getUser()
+  const resumeData = user?.resumeData as (CvFormValues | undefined)
+  const resumeHtmlString = resumeData ? renderResumeTemplate(resumeData) : ''
 
   return (
-    <ResumeEditor email={userEmail} defaultValues={resumeData} templateHtml={resumeHtmlData}/>
+    <ResumeEditor email={userSession.email} defaultValues={resumeData} templateHtml={resumeHtmlString}/>
   )
 }

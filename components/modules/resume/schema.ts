@@ -22,7 +22,7 @@ export const CVSchema = z
             'Phone numbers are stored as strings so use any format you like, e.g. 712-117-2923'
           )
           .optional(),
-        url: z
+        website: z
           .string()
           .url()
           .describe(

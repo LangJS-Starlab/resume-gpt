@@ -1,5 +1,5 @@
 import { AuthOptions } from "next-auth"
-import GithubProvider from "next-auth/providers/github"
+import GithubProvider, { GithubProfile } from "next-auth/providers/github"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import {
   env
@@ -27,23 +27,27 @@ export const authOptions: AuthOptions = {
   },
   callbacks: {
     async signIn ({user, account, profile}) {
-      const newUser = await createUser(user, profile)
-      await createAccount(account, newUser)
-      
-      return true
+      if (account?.provider === 'github') {
+        const newUser = await createUser(user, profile as GithubProfile)
+        await createAccount(account, newUser)
+        return true
+      }
+
+      throw new Error('Invalid provider')
     },
     async session({ token, session }) {
       if (token && session.user) {
         session.user.name = token.name
         session.user.email = token.email
         session.user.image = token.picture
+        session.user.id = token.id
       }
       return session
     },
     async jwt({ token, user }) {
       const dbUser = await db.user.findFirst({
         where: {
-          email: token.email,
+          id: token.id,
         },
       })
 

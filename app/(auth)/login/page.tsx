@@ -50,7 +50,7 @@ export default async function LoginPage() {
                   Create an account
               </h1>
               <p className="text-sm text-muted-foreground">
-                  Enter your email below to create your account
+                  Start building your resume today for free with the help of our AI powered builder.
               </p>
             </div>
             <UserAuthForm />

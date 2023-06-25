@@ -71,7 +71,3 @@ export function repairJSON<T>(json: string): { data: T; isComplete: boolean } {
     throw error
   }
 }
-
-export function cleanJsonString (json: string) {
-  return json.trim().split('\n').map(line => line.trim()).filter(line => line !== '').join('\n')
-}
