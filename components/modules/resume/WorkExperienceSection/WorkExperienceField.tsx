@@ -72,7 +72,7 @@ export const WorkExperienceField = ({
             </TooltipTrigger>
             <TooltipContent
               side="right"
-              sideOffset={20}
+              sideOffset={14}
               className="border-none  p-0"
             >
               <Button
@@ -80,7 +80,7 @@ export const WorkExperienceField = ({
                 variant="outline"
                 onClick={onRemoveItem(index)}
               >
-                <Icons.trash className="text-red-500" />
+                <Icons.trash size={14} className="text-red-500" />
               </Button>
             </TooltipContent>
           </Tooltip>
@@ -125,7 +125,7 @@ export const WorkExperienceField = ({
                 Highlights
               </Paragraph>
               <Button type='button' variant="outline" onClick={onAddNewHighlightItem}>
-                <Icons.plus className="mr-2" />
+                <Icons.plus size={14} className="mr-1" />
                 Add
               </Button>
             </Flex>

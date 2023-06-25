@@ -45,7 +45,7 @@ export const WorkHighlightField = ({
           </TooltipTrigger>
           <TooltipContent
             side="right"
-            sideOffset={20}
+            sideOffset={14}
             className="border-none  p-0"
           >
             <Button
@@ -53,7 +53,7 @@ export const WorkHighlightField = ({
               variant="outline"
               onClick={onRemoveItem(highlightIndex)}
             >
-              <Icons.trash className="text-red-500" />
+              <Icons.trash size={14} className="text-red-500" />
             </Button>
           </TooltipContent>
         </Tooltip>

@@ -51,7 +51,7 @@ export const ProjectSection = () => {
           variant="outline"
           onClick={onAddNewItem}
         >
-          <Icons.plus />
+          <Icons.plus size={14} className="mr-1"/>
           Add
         </Button>
       }
