@@ -26,6 +26,6 @@ export const ResumePreview = ({ resumeHtmlData, shouldRefetchTemplate }: ResumeP
   }
 
   return (
-    <div className="w-full" dangerouslySetInnerHTML={{__html: resumeHtml}}/>
+    <div className="w-full overflow-y-auto" dangerouslySetInnerHTML={{__html: resumeHtml}}/>
   );
 }
