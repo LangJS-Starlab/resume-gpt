@@ -41,14 +41,15 @@ export const getUser = async () => {
 }
 
 export const updateUserResumeData = async (email: string, resumeData: ResumeFormValues) => {
-  const user = await db.user.update({
+  const user = await getCurrentUser()
+  const dbUser = await db.user.update({
     where: {
-      email,
+      id: user?.id,
     },
     data: {
       resumeData: resumeData as Prisma.JsonObject
     },
   })
 
-  return user
+  return dbUser.resumeData
 }

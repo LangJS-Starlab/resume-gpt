@@ -1,4 +1,4 @@
-import {Configuration, CreateChatCompletionRequest, CreateChatCompletionResponse, OpenAIApi} from 'openai';
+import {ChatCompletionRequestMessage, Configuration, CreateChatCompletionRequest, CreateChatCompletionResponse, OpenAIApi} from 'openai';
 import { env } from '@/env.mjs';
 import { parseOpenAIJsonResponse } from './utils';
 import { GithubProfile } from 'next-auth/providers/github';
@@ -21,14 +21,14 @@ function prepareChatPrompt<T, ExtraArgs = unknown>(
 
 export const createResume = async (profile: GithubProfile) => {
   let resumeData
-  
+
   const prompt = prepareChatPrompt(
     `
     Based on the Github Profile data below, generate a json following JSON Resume standard as defined at https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json
     The json response should contains all the keys, you should fill in as much information as possible.
-    The basic summary should be filled based on: ${profile.bio}, it should sound more professional and in 6,7 sentences
+    The basic summary should be filled based on: ${profile.bio}, it should sound more professional and in 5, 6 sentences
     The basic title should be filled in based on: ${profile.bio}, but only in 2, 3 words
-    The work experiences should be filled in based on: ${profile.company} and ${profile.bio}
+    The work experiences should be filled in based on: ${profile.company}
 
     Github Profile: """
     {{profileString}}
@@ -47,9 +47,15 @@ export const createResume = async (profile: GithubProfile) => {
 
   const profileString = JSON.stringify(profile)
 
+  const userMessage: ChatCompletionRequestMessage = {
+    role: 'user', 
+    content: prompt.text.replaceAll('{{profileString}}', 
+      profileString)
+  }
+
   const request: CreateChatCompletionRequest = {
     model: 'gpt-3.5-turbo',
-    messages: [{ role: 'user', content: prompt.text.replaceAll('{{profileString}}', profileString) }],
+    messages: [userMessage],
     temperature: 0,
   }
   try {

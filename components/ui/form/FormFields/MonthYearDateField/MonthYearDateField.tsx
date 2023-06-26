@@ -47,8 +47,6 @@ export function MonthYearDateField<T extends FieldValues>(
   const yearValue = value ? `${new Date(value).getFullYear()}` : undefined;
   const [month, setMonth] = React.useState<string | undefined>(monthValue);
   const [year, setYear] = React.useState<string | undefined>(yearValue);
-  const { errors } = formState;
-  const error = get(errors, name);
 
   React.useEffect(() => {
     if (!month || !year) {

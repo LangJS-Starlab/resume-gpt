@@ -10,13 +10,14 @@ export function cn(...inputs: ClassValue[]) {
 export function parseOpenAIJsonResponse<T extends Record<string, unknown>>(
   response: CreateChatCompletionResponse
 ): { data: T | null; isComplete: boolean } {
+  console.log("🚀 ~ file: utils.ts:14 ~ response.choices:", response.choices)
   const text = response.choices[0]?.message?.content?.trim() ?? null
   
   if (!text) {
     return { data: null, isComplete: false }
   }
   
-  const stoppedAtMaxTokens = response.choices[0].finish_reason === 'max_tokens'
+  const stoppedAtMaxTokens = response.choices[0].finish_reason === 'length'
   let data: T | null = null
   let isComplete: boolean | null = null
   

@@ -4,6 +4,7 @@ import { buttonVariants } from '@/components/ui/Button';
 import Link from 'next/link';
 import { Flex } from '@/components/ui/Flex';
 import { ScrollArea } from '@/components/ui/ScrollArea';
+import { Icons } from '@/components/Icons';
 
 type ResumePreviewProps = {
   resumeHtmlData?: string
@@ -11,7 +12,7 @@ type ResumePreviewProps = {
 }
 
 export const ResumePreview = ({ resumeHtmlData, shouldRefetchTemplate }: ResumePreviewProps) => {
-  const { data, isLoading, refetch } = useResumeTemplate({
+  const { data, isRefetching, refetch } = useResumeTemplate({
     enabled: shouldRefetchTemplate
   })
   const resumeHtml = data?.data || resumeHtmlData
@@ -30,7 +31,7 @@ export const ResumePreview = ({ resumeHtmlData, shouldRefetchTemplate }: ResumeP
 
   return (
     <ScrollArea  className="relative h-full w-full">
-      <Flex justify="end" className='mb-2'>
+      <Flex justify="end" className='sticky top-0 mb-2 bg-background'>
         <Link
           href="/resume/download"
           target="_blank"
@@ -45,6 +46,11 @@ export const ResumePreview = ({ resumeHtmlData, shouldRefetchTemplate }: ResumeP
           Download PDF
           </div>
         </Link>
+        {
+          isRefetching && (
+            <Icons.spinner size={22} className="absolute left-0 top-4 mr-2 h-4 w-4 animate-spin" />
+          )
+        }
       </Flex>
       <div dangerouslySetInnerHTML={{__html: resumeHtml}}/>
     </ScrollArea>

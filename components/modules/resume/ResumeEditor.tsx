@@ -19,7 +19,6 @@ type ResumeEditorProps = {
 }
 
 export const ResumeEditor = ({ defaultValues, email, templateHtml }: ResumeEditorProps) => {
-  console.log("🚀 ~ file: ResumeEditor.tsx:22 ~ ResumeEditor ~ defaultValues:", defaultValues)
   const [isFormChanged, setIsFormChanged ] = React.useState(false)
   const [isPendingUpdateTemplate, startUpdateTemplateTransition] = React.useTransition()
   const shouldRefetchTemplate = isFormChanged && !isPendingUpdateTemplate

@@ -305,27 +305,28 @@
     }
 
     @media print {
-      body {
+      .body {
         margin: 0;
       }
-      .page {
+      .caffeine .page {
         width: 100%;
         height: 100%;
         margin: 0;
-        padding: 36px 0 30px;
         box-shadow: none;
       }
-      .page .resume-header,
-      .page .resume-content {
-        padding: 0 22px 0 34px;
+
+      .caffeine .page .resume-header,
+      .caffeine .page .resume-content {
+        padding: 0 64px 0 0;
       }
-      .container {
+
+      .caffeine .container {
         page-break-inside: avoid;
       }
-      .work-container .item {
+      .caffeine .work-container .item {
         page-break-inside: avoid;
       }
-      .fa-external-link {
+      .caffeine .fa-external-link {
         display: none;
       }
     }
