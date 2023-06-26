@@ -3,7 +3,6 @@ import { getAccount, getUser, updateUserResumeData } from "@/lib/db"
 import { ResumeFormValues } from "@/components/modules/resume/types"
 import { getCurrentUser } from "@/lib/session"
 import { redirect } from "next/navigation"
-import { renderResumeTemplate } from "@/lib/templates"
 import { createResume } from "@/lib/open-ai"
 import { GithubProfile } from "next-auth/providers/github"
 
@@ -13,11 +12,21 @@ export default async function ResumePage() {
   if (!userSession) {
     redirect(`/login`)
   }
+
   const user = await getUser()
   const resumeData = user?.resumeData as (ResumeFormValues | undefined)
-  const resumeHtmlString = resumeData ? renderResumeTemplate(resumeData) : ''
+  const userId = user?.id
+  const account = userId ? await getAccount(userId) : null
+  const profileData = account?.profileData
+  if (profileData && !resumeData) {
+    createResume(profileData as GithubProfile).then(data => {
+      data && updateUserResumeData(data)
+    }).catch(err => {
+      console.error("🚀 ~ file: page.tsx:26 ~ createResume ~ err:", err)
+    })
+  }
 
   return (
-    <ResumeEditor email={userSession.email} defaultValues={resumeData} templateHtml={resumeHtmlString}/>
+    <ResumeEditor email={userSession.email} defaultValues={resumeData}/>
   )
 }

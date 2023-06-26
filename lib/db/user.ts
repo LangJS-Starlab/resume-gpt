@@ -11,7 +11,7 @@ import { db } from "./db";
 export const createUser = async (user: User | AdapterUser) => {
   let dbUser = await db.user.findFirst({
     where: {
-      email: user.email,
+      id: user.id,
     },
   })
 
