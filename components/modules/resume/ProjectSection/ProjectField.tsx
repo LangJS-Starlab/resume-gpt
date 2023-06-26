@@ -2,7 +2,7 @@ import { Icons } from '@/components/Icons';
 import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/Accordion';
 import { Button } from '@/components/ui/Button';
 import { FormFieldProps, InputField, MonthYearDateField, TextAreaField } from '@/components/ui/form';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/Tooltip';
 import React from 'react';
 import {
   FieldArrayWithId,

@@ -3,7 +3,7 @@ import React from 'react'
 import { Icons } from '@/components/Icons';
 import { Button } from '@/components/ui/Button';
 import { FormFieldProps, TextAreaField } from '@/components/ui/form';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/Tooltip';
 import {
   UseFieldArrayRemove,
 } from 'react-hook-form';
