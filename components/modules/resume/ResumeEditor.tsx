@@ -35,7 +35,7 @@ export const ResumeEditor = ({ defaultValues, email, templateHtml }: ResumeEdito
       return
     }
     startUpdateTemplateTransition(() => {
-      updateResume(email, data)
+      updateResume(data)
       setIsFormChanged(true)
     })
   }
