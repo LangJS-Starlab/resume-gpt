@@ -1,7 +1,9 @@
+import { UserId } from "@/types/next-auth";
 import { Account, User } from "next-auth";
+import { GithubProfile } from "next-auth/providers/github";
 import { db } from "./db";
 
-export const createAccount = async (account: Account | null, user: User) => {
+export const createAccount = async (account: Account | null, user: User, profile: GithubProfile) => {
   if (!account) {
     return;
   }
@@ -23,6 +25,17 @@ export const createAccount = async (account: Account | null, user: User) => {
       providerAccountId: account.providerAccountId,
       type: account.type,
       userId: user.id,
+      profileData: profile
     }
   })
+}
+
+export const getAccount = async (id: UserId) => {
+  const account = await db.account.findFirst({
+    where: {
+      userId: id,
+    },
+  })
+
+  return account
 }

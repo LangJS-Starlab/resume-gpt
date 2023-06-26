@@ -7,7 +7,7 @@ import { GithubProfile } from "next-auth/providers/github";
 import { getCurrentUser } from "../session";
 import { db } from "./db";
 
-export const createUser = async (user: User | AdapterUser, profile?: GithubProfile) => {
+export const createUser = async (user: User | AdapterUser) => {
   let dbUser = await db.user.findFirst({
     where: {
       email: user.email,
@@ -41,7 +41,7 @@ export const getUser = async () => {
   return dbUser
 }
 
-export const updateUserResumeData = async (email: string, resumeData: ResumeFormValues) => {
+export const updateUserResumeData = async (resumeData: ResumeFormValues) => {
   const user = await getCurrentUser()
   const dbUser = await db.user.update({
     where: {

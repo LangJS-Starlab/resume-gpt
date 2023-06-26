@@ -1,9 +1,11 @@
 import { ResumeEditor } from "@/components/modules/resume"
-import { getUser } from "@/lib/db"
+import { getAccount, getUser } from "@/lib/db"
 import { ResumeFormValues } from "@/components/modules/resume/types"
 import { getCurrentUser } from "@/lib/session"
 import { redirect } from "next/navigation"
 import { renderResumeTemplate } from "@/lib/templates"
+import { createResume } from "@/lib/open-ai"
+import { GithubProfile } from "next-auth/providers/github"
 
 export default async function ResumePage() {
   const userSession = await getCurrentUser()
@@ -13,7 +15,10 @@ export default async function ResumePage() {
   }
 
   const user = await getUser()
-  const resumeData = user?.resumeData as (ResumeFormValues | undefined)
+  const userId = user?.id
+  const account = userId ? await getAccount(userId) : null
+  const profileData = account?.profileData
+  const resumeData = (profileData ? await createResume(profileData as GithubProfile) : undefined) as (ResumeFormValues | undefined)
   const resumeHtmlString = resumeData ? renderResumeTemplate(resumeData) : ''
 
   return (

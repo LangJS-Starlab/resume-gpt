@@ -28,8 +28,8 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async signIn ({user, account, profile}) {
       if (account?.provider === 'github') {
-        const newUser = await createUser(user, profile as GithubProfile)
-        await createAccount(account, newUser)
+        const newUser = await createUser(user)
+        await createAccount(account, newUser, profile as GithubProfile)
         return true
       }
 
