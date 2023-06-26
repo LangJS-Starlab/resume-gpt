@@ -1,9 +1,9 @@
 import { ResumeFormValues } from "@/components/modules/resume";
-import { Prisma } from "@prisma/client";
+// import { Prisma } from "@prisma/client";
 import { User } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
 import { GithubProfile } from "next-auth/providers/github";
-import { createResume } from "../open-ai";
+// import { createResume } from "../open-ai";
 import { getCurrentUser } from "../session";
 import { db } from "./db";
 
@@ -15,14 +15,14 @@ export const createUser = async (user: User | AdapterUser, profile?: GithubProfi
   })
 
   if (!dbUser) {
-    const resumeData = profile ? await createResume(profile) : null
+    // const resumeData = profile ? await createResume(profile) : null
     dbUser = await db.user.create({
       data: {
         email: user.email,
         name: user.name,
         image: user.image,
         // should be Prisma.JsonObject but it's not working when building for now
-        resumeData: resumeData as any
+        // resumeData: resumeData as any
       },
     })
   }
