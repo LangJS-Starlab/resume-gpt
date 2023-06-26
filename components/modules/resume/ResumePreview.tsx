@@ -31,7 +31,7 @@ export const ResumePreview = ({ resumeHtmlData, shouldRefetchTemplate }: ResumeP
 
   return (
     <ScrollArea  className="relative h-full w-full">
-      <Flex justify="end" className='sticky top-0 mb-2 bg-background'>
+      <Flex justify="end" className='absolute right-2 top-4 mb-2'>
         <Link
           href="/resume/download"
           target="_blank"
@@ -39,10 +39,11 @@ export const ResumePreview = ({ resumeHtmlData, shouldRefetchTemplate }: ResumeP
         >
           <div
             className={buttonVariants({
-              variant: "outline",
+              variant: "secondary",
               size: "sm",
             })}
           >
+            <Icons.download size={22} className="mr-2 h-4 w-4" />
           Download PDF
           </div>
         </Link>
