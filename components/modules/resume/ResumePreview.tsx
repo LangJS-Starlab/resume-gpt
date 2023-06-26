@@ -2,6 +2,9 @@ import React from 'react';
 import { useResumeTemplate } from '@/lib/queries';
 import { buttonVariants } from '@/components/ui/Button';
 import Link from 'next/link';
+import { Flex } from '@/components/ui/Flex';
+import { ScrollArea } from '@/components/ui/ScrollArea';
+import { Icons } from '@/components/Icons';
 
 type ResumePreviewProps = {
   resumeHtmlData?: string
@@ -9,7 +12,7 @@ type ResumePreviewProps = {
 }
 
 export const ResumePreview = ({ resumeHtmlData, shouldRefetchTemplate }: ResumePreviewProps) => {
-  const { data, isLoading, refetch } = useResumeTemplate({
+  const { data, isRefetching, refetch } = useResumeTemplate({
     enabled: shouldRefetchTemplate
   })
   const resumeHtml = data?.data || resumeHtmlData
@@ -27,22 +30,29 @@ export const ResumePreview = ({ resumeHtmlData, shouldRefetchTemplate }: ResumeP
   }
 
   return (
-    <div  className="relative h-full w-full overflow-y-auto">
-      <div dangerouslySetInnerHTML={{__html: resumeHtml}}/>
-      <Link
-        href="/resume/download"
-        target="_blank"
-        rel="noreferrer"
-        className='absolute right-0 top-4'
-      >
-        <div
-          className={buttonVariants({
-            variant: "outline"
-          })}
+    <ScrollArea  className="relative h-full w-full">
+      <Flex justify="end" className='sticky top-0 mb-2 bg-background'>
+        <Link
+          href="/resume/download"
+          target="_blank"
+          rel="noreferrer"
         >
+          <div
+            className={buttonVariants({
+              variant: "outline",
+              size: "sm",
+            })}
+          >
           Download PDF
-        </div>
-      </Link>
-    </div>
+          </div>
+        </Link>
+        {
+          isRefetching && (
+            <Icons.spinner size={22} className="absolute left-0 top-4 mr-2 h-4 w-4 animate-spin" />
+          )
+        }
+      </Flex>
+      <div dangerouslySetInnerHTML={{__html: resumeHtml}}/>
+    </ScrollArea>
   );
 }

@@ -7,7 +7,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import React from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
-import { CvFormValues } from '../types';
+import { ResumeFormValues } from '../types';
 import { ReferenceField } from './ReferenceField';
 
 export const ReferenceSection = () => {
@@ -16,7 +16,7 @@ export const ReferenceSection = () => {
     duration: 200,
   });
   const { register, formState, control, setValue } =
-    useFormContext<CvFormValues>();
+    useFormContext<ResumeFormValues>();
   const fieldProps = { register, formState };
   const { fields, prepend, remove } = useFieldArray({
     name: 'references',

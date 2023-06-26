@@ -8,7 +8,7 @@ import formatISO from 'date-fns/formatISO';
 import React from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
-import { CvFormValues } from '../types';
+import { ResumeFormValues } from '../types';
 import { EducationField } from './EducationField';
 
 export const EducationSection = () => {
@@ -17,7 +17,7 @@ export const EducationSection = () => {
     duration: 200,
   });
   const { register, formState, control, setValue } =
-    useFormContext<CvFormValues>();
+    useFormContext<ResumeFormValues>();
   const fieldProps = { register, formState };
   const { fields, prepend, remove } = useFieldArray({
     name: 'education',

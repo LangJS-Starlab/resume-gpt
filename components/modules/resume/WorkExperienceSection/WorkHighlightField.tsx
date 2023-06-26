@@ -7,12 +7,12 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import {
   UseFieldArrayRemove,
 } from 'react-hook-form';
-import { CvFormValues } from '../types';
+import { ResumeFormValues } from '../types';
 
 export type WorkHighlightFieldProps = {
   workIndex: number;
   highlightIndex: number;
-  fieldProps: Omit<FormFieldProps<CvFormValues>, 'name'>;
+  fieldProps: Omit<FormFieldProps<ResumeFormValues>, 'name'>;
   remove: UseFieldArrayRemove;
 };
 

@@ -1,6 +1,6 @@
 import { ResumeEditor } from "@/components/modules/resume"
 import { getUser } from "@/lib/db"
-import { CvFormValues } from "@/components/modules/resume/types"
+import { ResumeFormValues } from "@/components/modules/resume/types"
 import { getCurrentUser } from "@/lib/session"
 import { redirect } from "next/navigation"
 import { renderResumeTemplate } from "@/lib/templates"
@@ -13,7 +13,7 @@ export default async function ResumePage() {
   }
 
   const user = await getUser()
-  const resumeData = user?.resumeData as (CvFormValues | undefined)
+  const resumeData = user?.resumeData as (ResumeFormValues | undefined)
   const resumeHtmlString = resumeData ? renderResumeTemplate(resumeData) : ''
 
   return (

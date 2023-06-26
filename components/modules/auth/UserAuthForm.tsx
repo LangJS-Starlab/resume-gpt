@@ -11,6 +11,19 @@ interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false)
+  const [isCreatingResume, setIsCreatingResume] = React.useState<boolean>(false)
+
+  React.useEffect(
+    () => {
+      const id = setInterval(() => {
+        if (isGitHubLoading && !isCreatingResume) {
+          setIsCreatingResume(true)
+        }
+      }, 4000);
+      return () => clearInterval(id);
+    },
+    [isCreatingResume, isGitHubLoading]
+  );
 
   const onGitHubSignin = async () => {
     setIsGitHubLoading(true)
@@ -35,7 +48,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         ) : (
           <Icons.gitHub className="mr-2 h-4 w-4" />
         )}{" "}
-        Github
+        {isCreatingResume ? 'Analyzing your profile...' : 'Github'}
       </Button>
     </div>
   )

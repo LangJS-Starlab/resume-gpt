@@ -5,6 +5,7 @@ import { UserAuthForm } from "@/components/modules/auth"
 import { Icons } from "@/components/Icons"
 import { authOptions } from "@/lib/auth"
 import { getCurrentUser } from "@/lib/session"
+import { siteConfig } from "@/config/site"
 
 export const metadata: Metadata = {
   title: "Login",
@@ -30,17 +31,10 @@ export default async function LoginPage() {
             }}
           />
           <div className="relative z-20 flex items-center text-lg font-medium">
-            <Icons.command className="mr-2 h-6 w-6" /> Acme Inc
-          </div>
-          <div className="relative z-20 mt-auto">
-            <blockquote className="space-y-2">
-              <p className="text-lg">
-                  &ldquo;This library has saved me countless hours of work and
-                  helped me deliver stunning designs to my clients faster than
-                  ever before. Highly recommended!&rdquo;
-              </p>
-              <footer className="text-sm">Sofia Davis</footer>
-            </blockquote>
+            <Link href="/" className="flex items-center space-x-2">
+              <Icons.logo className="h-6 w-6" />
+              <span className="inline-block font-bold">{siteConfig.name}</span>
+            </Link>
           </div>
         </div>
         <div className="lg:p-8">

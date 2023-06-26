@@ -4,7 +4,7 @@ import { EducationSection } from './EducationSection';
 import { PersonalDetailsSection } from './PersonalDetailsSection';
 import { ProjectSection } from './ProjectSection';
 import { ReferenceSection } from './ReferenceSection';
-import { CvFormValues } from './types';
+import { ResumeFormValues } from './types';
 import { WorkExperienceSection } from './WorkExperienceSection';
 
 
