@@ -20,7 +20,7 @@ export default async function ResumePage() {
   const profileData = account?.profileData
   if (profileData && !resumeData) {
     createResume(profileData as GithubProfile).then(data => {
-      data && updateUserResumeData(data)
+      data && updateUserResumeData(data, userId)
     }).catch(err => {
       console.error("🚀 ~ file: page.tsx:26 ~ createResume ~ err:", err)
     })

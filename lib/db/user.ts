@@ -43,10 +43,9 @@ export const getUser = async () => {
 }
 
 export const updateUserResumeData = async (resumeData: ResumeFormValues, userId?: UserId) => {
-  const user = await getCurrentUser()
   const dbUser = await db.user.update({
     where: {
-      id: userId || user?.id,
+      id: userId,
     },
     data: {
       resumeData: resumeData as any
