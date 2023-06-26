@@ -9,6 +9,7 @@ import { getCurrentUser } from "../session";
 import { db } from "./db";
 
 export const createUser = async (user: User | AdapterUser) => {
+  console.log("🚀 ~ file: user.ts:12 ~ createUser ~ user:", user)
   let dbUser = await db.user.findFirst({
     where: {
       id: user.id,
@@ -19,6 +20,7 @@ export const createUser = async (user: User | AdapterUser) => {
     // const resumeData = profile ? await createResume(profile) : null
     dbUser = await db.user.create({
       data: {
+        id: user.id,
         email: user.email,
         name: user.name,
         image: user.image,

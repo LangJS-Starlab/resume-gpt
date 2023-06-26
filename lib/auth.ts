@@ -27,6 +27,7 @@ export const authOptions: AuthOptions = {
   },
   callbacks: {
     async signIn ({user, account, profile}) {
+      console.log("🚀 ~ file: auth.ts:30 ~ signIn ~ user:", user)
       if (account?.provider === 'github') {
         const newUser = await createUser(user)
         await createAccount(account, newUser, profile as GithubProfile)
@@ -36,6 +37,7 @@ export const authOptions: AuthOptions = {
       throw new Error('Invalid provider')
     },
     async session({ token, session }) {
+      console.log("🚀 ~ file: auth.ts:39 ~ session ~ session:", session)
       if (token && session.user) {
         session.user.name = token.name
         session.user.email = token.email
@@ -45,9 +47,11 @@ export const authOptions: AuthOptions = {
       return session
     },
     async jwt({ token, user }) {
+      console.log("🚀 ~ file: auth.ts:49 ~ jwt ~ token:", token)
+      console.log("🚀 ~ file: auth.ts:49 ~ jwt ~ user:", user)
       const dbUser = await db.user.findFirst({
         where: {
-          id: token.id,
+          email: token.email,
         },
       })
 

@@ -14,6 +14,7 @@ export default async function ResumePage() {
   }
 
   const user = await getUser()
+  console.log("🚀 ~ file: page.tsx:17 ~ ResumePage ~ user:", user)
   const resumeData = user?.resumeData as (ResumeFormValues | undefined)
   const userId = user?.id
   const account = userId ? await getAccount(userId) : null
