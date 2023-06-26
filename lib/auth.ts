@@ -4,7 +4,8 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import {
   env
 } from '@/env.mjs';
-import { createAccount, createUser, db } from "./db";
+import { createAccount, createUser, db, updateUserResumeData } from "./db";
+import { createResume } from "./open-ai";
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(db),
@@ -29,6 +30,9 @@ export const authOptions: AuthOptions = {
     async signIn ({user, account, profile}) {
       if (account?.provider === 'github') {
         const newUser = await createUser(user)
+        createResume(profile as GithubProfile).then(resumeData => {
+          resumeData && updateUserResumeData(resumeData, newUser.id)
+        })
         await createAccount(account, newUser, profile as GithubProfile)
         return true
       }

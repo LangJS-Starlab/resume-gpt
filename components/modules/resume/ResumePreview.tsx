@@ -15,7 +15,7 @@ export const ResumePreview = ({ resumeHtmlData, shouldRefetchTemplate }: ResumeP
   const { data, isRefetching, refetch } = useResumeTemplate({
     enabled: shouldRefetchTemplate
   })
-  const resumeHtml = data?.data || resumeHtmlData
+  const resumeHtml = data?.resumeHtmlData || resumeHtmlData
 
   React.useEffect(() => {
     if (!shouldRefetchTemplate) {

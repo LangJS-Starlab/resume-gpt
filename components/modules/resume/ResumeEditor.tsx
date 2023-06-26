@@ -11,6 +11,9 @@ import { updateResume } from './actions';
 import { ResumeForm } from './ResumeForm';
 import { Flex } from '@/components/ui/Flex';
 import { ResumePreview } from './ResumePreview';
+import { useResumeDetails, useResumeTemplate } from '@/lib/queries';
+import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/AlertDialog';
+import { Icons } from '@/components/Icons';
 
 type ResumeEditorProps = {
   defaultValues?: ResumeFormValues
@@ -21,6 +24,11 @@ type ResumeEditorProps = {
 export const ResumeEditor = ({ defaultValues, email, templateHtml }: ResumeEditorProps) => {
   const [isFormChanged, setIsFormChanged ] = React.useState(false)
   const [isPendingUpdateTemplate, startUpdateTemplateTransition] = React.useTransition()
+  const { data: resumeDetails } = useResumeDetails({
+    refetchInterval: (data) => {
+      return !data ? 1000 : false
+    },
+  })
   const shouldRefetchTemplate = isFormChanged && !isPendingUpdateTemplate
 
   const formReturn = useForm<ResumeFormValues>({
@@ -28,7 +36,13 @@ export const ResumeEditor = ({ defaultValues, email, templateHtml }: ResumeEdito
     mode: 'onChange',
     resolver: zodResolver(ResumeSchema),
   });
-  const { watch } = formReturn
+
+  const { watch, reset } = formReturn
+
+  React.useEffect(() => {
+    resumeDetails && reset(resumeDetails)
+  }, [reset, resumeDetails])
+
 
   const handleDebounceUpdateResume = (data: ResumeFormValues) => {
     if (!email || !data) {
@@ -65,6 +79,19 @@ export const ResumeEditor = ({ defaultValues, email, templateHtml }: ResumeEdito
       <Flex className="sticky right-0 top-12 h-screen flex-1 p-4">
         <ResumePreview resumeHtmlData={templateHtml} shouldRefetchTemplate={shouldRefetchTemplate}/>
       </Flex>
+
+      <AlertDialog open={!defaultValues && !resumeDetails}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className='text-center'>Your resume is being generated</AlertDialogTitle>
+            <AlertDialogDescription className='flex flex-col items-center justify-center text-center'>
+              <p>We are anylizing your Github profile data and generating the resume.</p>
+              <p>This may take a few seconds.</p>
+              <Icons.spinner className="mr-2 mt-4 h-4 w-4 animate-spin" />
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+        </AlertDialogContent>
+      </AlertDialog>
     </Flex>
   );
 };

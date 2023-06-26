@@ -8,5 +8,5 @@ export async function GET() {
   const resumeData = user?.resumeData as Resume
   const resumeHtmlData = renderResumeTemplate(resumeData)
  
-  return NextResponse.json({ data: resumeHtmlData  })
+  return NextResponse.json({ resumeHtmlData: resumeHtmlData, resumeData  })
 }

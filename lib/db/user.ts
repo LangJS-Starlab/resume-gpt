@@ -1,4 +1,5 @@
 import { ResumeFormValues } from "@/components/modules/resume";
+import { UserId } from "@/types/next-auth";
 // import { Prisma } from "@prisma/client";
 import { User } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
@@ -41,11 +42,11 @@ export const getUser = async () => {
   return dbUser
 }
 
-export const updateUserResumeData = async (resumeData: ResumeFormValues) => {
+export const updateUserResumeData = async (resumeData: ResumeFormValues, userId?: UserId) => {
   const user = await getCurrentUser()
   const dbUser = await db.user.update({
     where: {
-      id: user?.id,
+      id: userId || user?.id,
     },
     data: {
       resumeData: resumeData as any

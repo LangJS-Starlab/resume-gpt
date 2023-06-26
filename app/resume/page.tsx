@@ -1,5 +1,5 @@
 import { ResumeEditor } from "@/components/modules/resume"
-import { getAccount, getUser } from "@/lib/db"
+import { getAccount, getUser, updateUserResumeData } from "@/lib/db"
 import { ResumeFormValues } from "@/components/modules/resume/types"
 import { getCurrentUser } from "@/lib/session"
 import { redirect } from "next/navigation"
@@ -13,12 +13,8 @@ export default async function ResumePage() {
   if (!userSession) {
     redirect(`/login`)
   }
-
   const user = await getUser()
-  const userId = user?.id
-  const account = userId ? await getAccount(userId) : null
-  const profileData = account?.profileData
-  const resumeData = (profileData ? await createResume(profileData as GithubProfile) : undefined) as (ResumeFormValues | undefined)
+  const resumeData = user?.resumeData as (ResumeFormValues | undefined)
   const resumeHtmlString = resumeData ? renderResumeTemplate(resumeData) : ''
 
   return (
