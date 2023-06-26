@@ -7,7 +7,7 @@ import Link from "next/link"
 export default async function IndexPage() {
   return (
     <>
-      <SiteHeader/>
+      <SiteHeader />
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
@@ -138,7 +138,7 @@ export default async function IndexPage() {
               <div className="space-y-2">
                 <h3 className="font-bold">Open AI</h3>
                 <p className="text-sm text-muted-foreground">
-                  Data transformation and enhancement using OpenAI's GPT API.
+                  Data transformation and enhancement using OpenAI GPT.
                 </p>
               </div>
             </div>
