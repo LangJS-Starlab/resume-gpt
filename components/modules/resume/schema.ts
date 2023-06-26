@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const CVSchema = z
+export const ResumeSchema = z
   .object({
     basics: z
       .object({
@@ -277,7 +277,7 @@ export const CVSchema = z
               .describe('e.g. Certified Kubernetes Administrator')
               .optional(),
             date: z.string().describe('e.g. 1989-06-12').optional(),
-            url: z
+            website: z
               .string()
               .url()
               .describe('e.g. http://example.com')
@@ -422,7 +422,7 @@ export const CVSchema = z
               )
               .describe('e.g. 2014-06-29')
               .optional(),
-            url: z
+            website: z
               .string()
               .url()
               .describe(

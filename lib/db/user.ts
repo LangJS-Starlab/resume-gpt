@@ -1,4 +1,4 @@
-import { CvFormValues } from "@/components/modules/resume";
+import { ResumeFormValues } from "@/components/modules/resume";
 import { Prisma } from "@prisma/client";
 import { User } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
@@ -40,7 +40,7 @@ export const getUser = async () => {
   return dbUser
 }
 
-export const updateUserResumeData = async (email: string, resumeData: CvFormValues) => {
+export const updateUserResumeData = async (email: string, resumeData: ResumeFormValues) => {
   const user = await db.user.update({
     where: {
       email,

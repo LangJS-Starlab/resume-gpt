@@ -10,21 +10,21 @@ import {
   UseFieldArrayRemove,
   UseFormSetValue,
 } from 'react-hook-form';
-import { CvFormValues } from '../types';
+import { ResumeFormValues } from '../types';
 
 type EducationFieldProps = {
-  field: FieldArrayWithId<CvFormValues, 'education'>;
+  field: FieldArrayWithId<ResumeFormValues, 'education'>;
   index: number;
-  fieldProps: Omit<FormFieldProps<CvFormValues>, 'name'>;
-  setValue: UseFormSetValue<CvFormValues>;
+  fieldProps: Omit<FormFieldProps<ResumeFormValues>, 'name'>;
+  setValue: UseFormSetValue<ResumeFormValues>;
   remove: UseFieldArrayRemove;
 };
 
 type ReferenceFieldProps = {
-  field: FieldArrayWithId<CvFormValues, 'references'>;
+  field: FieldArrayWithId<ResumeFormValues, 'references'>;
   index: number;
-  fieldProps: Omit<FormFieldProps<CvFormValues>, 'name'>;
-  setValue: UseFormSetValue<CvFormValues>;
+  fieldProps: Omit<FormFieldProps<ResumeFormValues>, 'name'>;
+  setValue: UseFormSetValue<ResumeFormValues>;
   remove: UseFieldArrayRemove;
 };
 
@@ -90,7 +90,7 @@ export const ReferenceField = ({
         </div>
         <TextAreaField
           name={`references.${index}.reference` as const}
-          label="Reference"
+          label="Comments"
           rows={5}
           {...fieldProps}
         />

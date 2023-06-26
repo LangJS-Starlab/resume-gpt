@@ -579,6 +579,67 @@
                 {{/each}}
                 </div>
                 {{/if}}
+
+
+                {{#if resume.projects.length}}
+                <div class="container work-container">
+                <div class="title">
+                    <h3>Projects</h3>
+                    <div class="keyline"></div>
+                </div>
+                {{#each resume.projects}}
+                <section class="item">
+                    <div class="section-header clearfix">
+                    {{#if this.entity}}
+                    <h3 class="bold pull-left">
+                        {{#if website}}
+                        <a href="{{website}}" target="_blank">
+                            {{this.entity}} <i class="fa fa-external-link" aria-hidden="true"></i>
+                        </a>
+                        {{else}}
+                        {{this.entity}}
+                        {{/if}}
+                    </h3>
+                    {{/if}}
+                    <h5 class="italic pull-right">
+                        {{#if startDate}}
+                        <span class="startDate">{{formatDate startDate}}</span>
+                        {{#if endDate}}
+                        <span class="endDate"> - {{formatDate endDate}}</span>
+                        {{else}}
+                        <span class="endDate"> - Present</span>
+                        {{/if}}
+                        {{else if releaseDate}}
+                        {{formatDate releaseDate}}
+                        {{/if}}
+                    </h5>
+                    </div>
+        
+                    {{#if name}}
+                    <h4>{{name}}</h4>
+                    {{/if}}
+
+                    {{#if type}}
+                    <h6>({{type}})</h6>
+                    {{/if}}
+        
+                    {{#if description}}
+                    <p class="summary">{{description}}</p>
+                    {{/if}}
+        
+                    {{#if highlights.length}}
+                    <ul>
+                        {{#each highlights}}
+                        <li>{{.}}</li>
+                        {{/each}}
+                    </ul>
+                    {{/if}}
+                </section>
+                {{/each}}
+                </div>
+                {{/if}}
+
+
                 {{#if resume.volunteer.length}}
                 <div class="container volunteer-container">
                 <div class="title">
@@ -632,6 +693,45 @@
                 {{/each}}
                 </div>
                 {{/if}}
+
+
+                {{#if resume.certificates.length}}
+                <div class="container certificates-container">
+                <div class="title">
+                    <h3>Certificates</h3>
+                    <div class="keyline"></div>
+                </div>
+        
+                {{#each resume.certificates}}
+                <section class="item">
+                    <div class="section-header clearfix">
+                    {{#if this.name}}
+                    <h3 class="bold pull-left">
+                        {{#if website}}
+                        <a href="{{website}}" target="_blank">
+                            {{this.name}} <i class="fa fa-external-link" aria-hidden="true"></i>
+                        </a>
+                        {{else}}
+                        {{this.name}}
+                        {{/if}}
+                    </h3>
+                    {{/if}}
+                    <h5 class="italic pull-right">
+                        {{#if date}}
+                        <span class="startDate">{{formatDate date}}</span>
+                        {{/if}}
+                    </h5>
+                    </div>
+                    {{#if issuer}}
+                    <h5>{{issuer}}</h5>
+                    {{/if}}
+
+                </section>
+                {{/each}}
+                </div>
+                {{/if}}
+
+
                 {{#if resume.education.length}}
                 <div class="container education-container">
                 <div class="title">

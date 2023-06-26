@@ -9,21 +9,21 @@ import {
   UseFieldArrayRemove,
   UseFormSetValue,
 } from 'react-hook-form';
-import { CvFormValues } from '../types';
+import { ResumeFormValues } from '../types';
 
 type EducationFieldProps = {
-  field: FieldArrayWithId<CvFormValues, 'education'>;
+  field: FieldArrayWithId<ResumeFormValues, 'education'>;
   index: number;
-  fieldProps: Omit<FormFieldProps<CvFormValues>, 'name'>;
-  setValue: UseFormSetValue<CvFormValues>;
+  fieldProps: Omit<FormFieldProps<ResumeFormValues>, 'name'>;
+  setValue: UseFormSetValue<ResumeFormValues>;
   remove: UseFieldArrayRemove;
 };
 
 type ProjectFieldProps = {
-  field: FieldArrayWithId<CvFormValues, 'projects'>;
+  field: FieldArrayWithId<ResumeFormValues, 'projects'>;
   index: number;
-  fieldProps: Omit<FormFieldProps<CvFormValues>, 'name'>;
-  setValue: UseFormSetValue<CvFormValues>;
+  fieldProps: Omit<FormFieldProps<ResumeFormValues>, 'name'>;
+  setValue: UseFormSetValue<ResumeFormValues>;
   remove: UseFieldArrayRemove;
 };
 
@@ -104,7 +104,7 @@ export const ProjectField = ({
               {...fieldProps}
             />
             <InputField
-              name={`projects.${index}.url` as const}
+              name={`projects.${index}.website` as const}
               label="Website"
               {...fieldProps}
             />

@@ -3,10 +3,10 @@ import { InputField, TextAreaField } from '@/components/ui/form';
 import { Section } from '@/components/ui/Section';
 import { useFormContext } from 'react-hook-form';
 
-import { CvFormValues } from '../types';
+import { ResumeFormValues } from '../types';
 
 export const PersonalDetailsSection = () => {
-  const { register, formState } = useFormContext<CvFormValues>();
+  const { register, formState } = useFormContext<ResumeFormValues>();
   const fieldProps = { register, formState };
   return (
     <Section

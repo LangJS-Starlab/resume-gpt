@@ -20,7 +20,6 @@ function prepareChatPrompt<T, ExtraArgs = unknown>(
 }
 
 export const createResume = async (profile: GithubProfile) => {
-  console.log("🚀 ~ file: open-ai.ts:23 ~ createResume ~ profile:", profile)
   let resumeData
   
   const prompt = prepareChatPrompt(

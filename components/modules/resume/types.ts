@@ -1,10 +1,10 @@
 import { z } from 'zod';
-import { CVSchema } from './schema';
+import { ResumeSchema } from './schema';
 
-export type CV = z.infer<typeof CVSchema>;
+export type Resume = z.infer<typeof ResumeSchema>;
 
-export type CvFormValues = CV;
+export type ResumeFormValues = Resume;
 
 export interface ResumeTheme {
-  render(resume: CV): string
+  render(resume: Resume): string
 }

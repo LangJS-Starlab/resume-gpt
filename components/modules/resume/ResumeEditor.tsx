@@ -5,15 +5,15 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import debounce from 'lodash/debounce';
 import isEmpty from 'lodash/isEmpty';
-import { CVSchema } from './schema';
-import { CvFormValues } from './types';
+import { ResumeSchema } from './schema';
+import { ResumeFormValues } from './types';
 import { updateResume } from './actions';
 import { ResumeForm } from './ResumeForm';
 import { Flex } from '@/components/ui/Flex';
 import { ResumePreview } from './ResumePreview';
 
 type ResumeEditorProps = {
-  defaultValues?: CvFormValues
+  defaultValues?: ResumeFormValues
   email?: string | null
   templateHtml?: string
 }
@@ -24,14 +24,14 @@ export const ResumeEditor = ({ defaultValues, email, templateHtml }: ResumeEdito
   const [isPendingUpdateTemplate, startUpdateTemplateTransition] = React.useTransition()
   const shouldRefetchTemplate = isFormChanged && !isPendingUpdateTemplate
 
-  const formReturn = useForm<CvFormValues>({
+  const formReturn = useForm<ResumeFormValues>({
     defaultValues,
     mode: 'onChange',
-    resolver: zodResolver(CVSchema),
+    resolver: zodResolver(ResumeSchema),
   });
   const { watch } = formReturn
 
-  const handleDebounceUpdateResume = (data: CvFormValues) => {
+  const handleDebounceUpdateResume = (data: ResumeFormValues) => {
     if (!email || !data) {
       return
     }
@@ -45,7 +45,7 @@ export const ResumeEditor = ({ defaultValues, email, templateHtml }: ResumeEdito
 
   React.useEffect(() => {
     const watchSubscribe = watch((data) => {
-      debounceUpdateResume(data as CvFormValues)
+      debounceUpdateResume(data as ResumeFormValues)
     })
     return () => {
       watchSubscribe.unsubscribe()

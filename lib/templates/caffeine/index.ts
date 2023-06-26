@@ -2,7 +2,7 @@ import Handlebars from 'handlebars'
 import format from 'date-fns/format';
 
 import template from './resume.html';
-import { CV, ResumeTheme } from '@/components/modules/resume';
+import { Resume, ResumeTheme } from '@/components/modules/resume';
 
 let handleBarInstance: typeof Handlebars
 
@@ -75,7 +75,7 @@ const getHandleInstance = () => {
 }
 
 export const theme: ResumeTheme = {
-  render: (resume: CV) => {
+  render: (resume: Resume) => {
     return getHandleInstance().compile(template)({
       resume: resume
     })

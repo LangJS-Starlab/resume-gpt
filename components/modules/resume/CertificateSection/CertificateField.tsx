@@ -9,13 +9,13 @@ import {
   UseFieldArrayRemove,
   UseFormSetValue,
 } from 'react-hook-form';
-import { CvFormValues } from '../types';
+import { ResumeFormValues } from '../types';
 
 type CertificateFieldProps = {
-  field: FieldArrayWithId<CvFormValues, 'certificates'>;
+  field: FieldArrayWithId<ResumeFormValues, 'certificates'>;
   index: number;
-  fieldProps: Omit<FormFieldProps<CvFormValues>, 'name'>;
-  setValue: UseFormSetValue<CvFormValues>;
+  fieldProps: Omit<FormFieldProps<ResumeFormValues>, 'name'>;
+  setValue: UseFormSetValue<ResumeFormValues>;
   remove: UseFieldArrayRemove;
 };
 
@@ -80,7 +80,7 @@ export const CertificateField = ({
               {...fieldProps}
             />
             <InputField
-              name={`certificates.${index}.url` as const}
+              name={`certificates.${index}.website` as const}
               label="Website"
               {...fieldProps}
             />

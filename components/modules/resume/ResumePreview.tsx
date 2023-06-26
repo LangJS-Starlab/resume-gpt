@@ -2,6 +2,8 @@ import React from 'react';
 import { useResumeTemplate } from '@/lib/queries';
 import { buttonVariants } from '@/components/ui/Button';
 import Link from 'next/link';
+import { Flex } from '@/components/ui/Flex';
+import { ScrollArea } from '@/components/ui/ScrollArea';
 
 type ResumePreviewProps = {
   resumeHtmlData?: string
@@ -27,22 +29,24 @@ export const ResumePreview = ({ resumeHtmlData, shouldRefetchTemplate }: ResumeP
   }
 
   return (
-    <div  className="relative h-full w-full overflow-y-auto">
-      <div dangerouslySetInnerHTML={{__html: resumeHtml}}/>
-      <Link
-        href="/resume/download"
-        target="_blank"
-        rel="noreferrer"
-        className='absolute right-0 top-4'
-      >
-        <div
-          className={buttonVariants({
-            variant: "outline"
-          })}
+    <ScrollArea  className="relative h-full w-full">
+      <Flex justify="end" className='mb-2'>
+        <Link
+          href="/resume/download"
+          target="_blank"
+          rel="noreferrer"
         >
+          <div
+            className={buttonVariants({
+              variant: "outline",
+              size: "sm",
+            })}
+          >
           Download PDF
-        </div>
-      </Link>
-    </div>
+          </div>
+        </Link>
+      </Flex>
+      <div dangerouslySetInnerHTML={{__html: resumeHtml}}/>
+    </ScrollArea>
   );
 }

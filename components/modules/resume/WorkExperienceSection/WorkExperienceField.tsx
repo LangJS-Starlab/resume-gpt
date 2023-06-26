@@ -11,17 +11,17 @@ import {
   useFieldArray,
   useFormContext,
 } from 'react-hook-form';
-import { CvFormValues } from '../types';
+import { ResumeFormValues } from '../types';
 import { WorkHighlightField, WorkHighlightFieldProps } from './WorkHighlightField';
 import { Section } from '@/components/ui/Section';
 import { Flex } from '@/components/ui/Flex';
 import { Heading4, Paragraph } from '@/components/ui/Typography';
 
 type WorkExperienceFieldProps = {
-  field: FieldArrayWithId<CvFormValues, 'work'>;
+  field: FieldArrayWithId<ResumeFormValues, 'work'>;
   index: number;
-  fieldProps: Omit<FormFieldProps<CvFormValues>, 'name'>;
-  setValue: UseFormSetValue<CvFormValues>;
+  fieldProps: Omit<FormFieldProps<ResumeFormValues>, 'name'>;
+  setValue: UseFormSetValue<ResumeFormValues>;
   remove: UseFieldArrayRemove;
 };
 
@@ -32,7 +32,7 @@ export const WorkExperienceField = ({
   setValue,
   remove,
 }: WorkExperienceFieldProps) => {
-  const { control } = useFormContext<CvFormValues>();
+  const { control } = useFormContext<ResumeFormValues>();
   const [title, setTitle] = React.useState('');
 
   const { fields: highlightFields, append: appendHighlight, remove: removeHighlight } = useFieldArray({
@@ -134,7 +134,7 @@ export const WorkExperienceField = ({
                 const props: WorkHighlightFieldProps = {
                   workIndex: index,
                   highlightIndex,
-                  remove,
+                  remove: removeHighlight,
                   fieldProps,
                 };
                 return <WorkHighlightField key={field.id} {...props} />;

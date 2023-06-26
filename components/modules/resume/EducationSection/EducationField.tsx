@@ -9,13 +9,13 @@ import {
   UseFieldArrayRemove,
   UseFormSetValue,
 } from 'react-hook-form';
-import { CvFormValues } from '../types';
+import { ResumeFormValues } from '../types';
 
 type EducationFieldProps = {
-  field: FieldArrayWithId<CvFormValues, 'education'>;
+  field: FieldArrayWithId<ResumeFormValues, 'education'>;
   index: number;
-  fieldProps: Omit<FormFieldProps<CvFormValues>, 'name'>;
-  setValue: UseFormSetValue<CvFormValues>;
+  fieldProps: Omit<FormFieldProps<ResumeFormValues>, 'name'>;
+  setValue: UseFormSetValue<ResumeFormValues>;
   remove: UseFieldArrayRemove;
 };
 
