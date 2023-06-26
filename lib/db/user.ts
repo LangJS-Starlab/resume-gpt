@@ -21,7 +21,8 @@ export const createUser = async (user: User | AdapterUser, profile?: GithubProfi
         email: user.email,
         name: user.name,
         image: user.image,
-        resumeData: resumeData as Prisma.JsonObject
+        // should be Prisma.JsonObject but it's not working when building for now
+        resumeData: resumeData as any
       },
     })
   }
@@ -47,7 +48,7 @@ export const updateUserResumeData = async (email: string, resumeData: ResumeForm
       id: user?.id,
     },
     data: {
-      resumeData: resumeData as Prisma.JsonObject
+      resumeData: resumeData as any
     },
   })
 
