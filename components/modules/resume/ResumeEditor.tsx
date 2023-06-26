@@ -14,14 +14,15 @@ import { ResumePreview } from './ResumePreview';
 import { useResumeDetails, useResumeTemplate } from '@/lib/queries';
 import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/AlertDialog';
 import { Icons } from '@/components/Icons';
+import { UserId } from '@/types/next-auth';
 
 type ResumeEditorProps = {
   defaultValues?: ResumeFormValues
-  email?: string | null
+  userId?: UserId
   templateHtml?: string
 }
 
-export const ResumeEditor = ({ defaultValues, email, templateHtml }: ResumeEditorProps) => {
+export const ResumeEditor = ({ defaultValues, userId, templateHtml }: ResumeEditorProps) => {
   const [isFormChanged, setIsFormChanged ] = React.useState(false)
   const [isPendingUpdateTemplate, startUpdateTemplateTransition] = React.useTransition()
   const { data: resumeDetails } = useResumeDetails({
@@ -45,11 +46,11 @@ export const ResumeEditor = ({ defaultValues, email, templateHtml }: ResumeEdito
 
 
   const handleDebounceUpdateResume = (data: ResumeFormValues) => {
-    if (!email || !data) {
+    if (!userId || !data) {
       return
     }
     startUpdateTemplateTransition(() => {
-      updateResume(data)
+      updateResume(data, userId)
       setIsFormChanged(true)
     })
   }

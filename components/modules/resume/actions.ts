@@ -4,6 +4,6 @@ import { ResumeFormValues } from "./types"
 import { updateUserResumeData } from '@/lib/db';
 import { UserId } from "@/types/next-auth";
  
-export async function updateResume(id: UserId, values: ResumeFormValues) {
+export async function updateResume(values: ResumeFormValues, id: UserId) {
   await updateUserResumeData(values, id)
 }

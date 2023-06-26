@@ -27,6 +27,6 @@ export default async function ResumePage() {
   }
 
   return (
-    <ResumeEditor email={userSession.email} defaultValues={resumeData}/>
+    <ResumeEditor userId={userId} defaultValues={resumeData}/>
   )
 }
