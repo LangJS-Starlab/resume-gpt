@@ -1,6 +1,6 @@
 import React from 'react';
-import { useResumeTemplate } from '@/lib/queries';
-import { buttonVariants } from '@/components/ui/Button';
+import { useResumePdf } from '@/lib/queries';
+import { Button, buttonVariants } from '@/components/ui/Button';
 import Link from 'next/link';
 import { Flex } from '@/components/ui/Flex';
 import { ScrollArea } from '@/components/ui/ScrollArea';
@@ -11,7 +11,19 @@ type ResumePreviewProps = {
   isLoading: boolean
 }
 
+function downloadPdfFromBase64(base64Data: string) {
+  const pdfWindow = window.open("")
+  pdfWindow?.document.write("<iframe frameBorder='0' width='100%' height='100%' src='"+encodeURI(base64Data)+"'></iframe>")
+}
+
 export const ResumePreview = ({ resumeHtmlData, isLoading }: ResumePreviewProps) => {
+  const { refetch } = useResumePdf({
+    enabled: false,
+    onSuccess(data) {
+      downloadPdfFromBase64(data.data)
+    },
+  })
+
   if (!resumeHtmlData) {
     return null
   }
@@ -26,21 +38,14 @@ export const ResumePreview = ({ resumeHtmlData, isLoading }: ResumePreviewProps)
             </div>
           )
         }
-        <Link
-          href="/resume/download"
-          target="_blank"
-          rel="noreferrer"
+        <Button
+          variant="secondary"
+          size="sm"
+          onClick={() => refetch()}
         >
-          <div
-            className={buttonVariants({
-              variant: "secondary",
-              size: "sm",
-            })}
-          >
-            <Icons.download size={22} className="mr-2 h-4 w-4" />
+          <Icons.download size={22} className="mr-2 h-4 w-4" />
           Download PDF
-          </div>
-        </Link>
+        </Button>
       </Flex>
       <div dangerouslySetInnerHTML={{__html: resumeHtmlData}}/>
     </ScrollArea>

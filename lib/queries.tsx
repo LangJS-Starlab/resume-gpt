@@ -8,6 +8,10 @@ type ResumeResponse = {
 
 type ResumeDetailsResponse = Resume
 
+type ResumePdfResponse = {
+  data: string
+}
+
 export const useResumeTemplate = (options?: UseQueryOptions<ResumeResponse>) => {
   return useQuery<ResumeResponse>("resumeTemplate", async () => {
     const res = await fetch(`/resume/api`)
@@ -21,5 +25,13 @@ export const useResumeDetails = (options: UseQueryOptions<ResumeDetailsResponse>
     const res = await fetch(`/resume/api`)
     const data = await res.json()
     return data.resumeData
+  }, options)
+}
+
+export const useResumePdf = (options: UseQueryOptions<ResumePdfResponse>) => {
+  return useQuery<ResumePdfResponse>("resumeDownload", async () => {
+    const res = await fetch(`/resume/download`)
+    const data = await res.json()
+    return data
   }, options)
 }
