@@ -92,7 +92,7 @@ export const ResumeEditor = ({ defaultValues, templateHtml }: ResumeEditorProps)
           <AlertDialogHeader>
             <AlertDialogTitle className='text-center'>Your resume is being generated</AlertDialogTitle>
             <AlertDialogDescription className='flex flex-col items-center justify-center text-center'>
-              <p>We are anylizing your Github profile data and generating the resume.</p>
+              <p>We are analyzing your Github profile data and generating the resume.</p>
               <p>This may take a few seconds.</p>
               <Icons.spinner className="mr-2 mt-4 h-4 w-4 animate-spin" />
             </AlertDialogDescription>
