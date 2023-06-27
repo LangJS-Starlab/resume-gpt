@@ -25,7 +25,10 @@ type ResumeEditorProps = {
 export const ResumeEditor = ({ defaultValues, userId, templateHtml }: ResumeEditorProps) => {
   const [isFormChanged, setIsFormChanged ] = React.useState(false)
   const [isPendingUpdateTemplate, startUpdateTemplateTransition] = React.useTransition()
+  const formReinitialized = React.useRef(false)
+
   const { data: resumeDetails } = useResumeDetails({
+    enabled: isEmpty(defaultValues),
     refetchInterval: (data) => {
       return !data ? 1000 : false
     },
@@ -41,7 +44,10 @@ export const ResumeEditor = ({ defaultValues, userId, templateHtml }: ResumeEdit
   const { watch, reset } = formReturn
 
   React.useEffect(() => {
-    resumeDetails && reset(resumeDetails)
+    if (resumeDetails && !formReinitialized.current && isEmpty(defaultValues)) {
+      reset(resumeDetails)
+      formReinitialized.current = true
+    }
   }, [reset, resumeDetails])
 
 
@@ -55,7 +61,7 @@ export const ResumeEditor = ({ defaultValues, userId, templateHtml }: ResumeEdit
     })
   }
 
-  const debounceUpdateResume = React.useCallback(debounce(handleDebounceUpdateResume, 100), []);
+  const debounceUpdateResume = React.useCallback(debounce(handleDebounceUpdateResume, 300), []);
 
   React.useEffect(() => {
     const watchSubscribe = watch((data) => {

@@ -12,9 +12,7 @@ type ResumePreviewProps = {
 }
 
 export const ResumePreview = ({ resumeHtmlData, shouldRefetchTemplate }: ResumePreviewProps) => {
-  const { data, isRefetching, refetch } = useResumeTemplate({
-    enabled: shouldRefetchTemplate
-  })
+  const { data, isRefetching, refetch } = useResumeTemplate()
   const resumeHtml = data?.resumeHtmlData || resumeHtmlData
 
   React.useEffect(() => {

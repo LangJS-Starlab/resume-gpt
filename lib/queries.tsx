@@ -8,7 +8,7 @@ type ResumeResponse = {
 
 type ResumeDetailsResponse = Resume
 
-export const useResumeTemplate = (options: UseQueryOptions<ResumeResponse>) => {
+export const useResumeTemplate = (options?: UseQueryOptions<ResumeResponse>) => {
   return useQuery<ResumeResponse>("resumeTemplate", async () => {
     const res = await fetch(`/resume/api`)
     const data = await res.json() as ResumeResponse
