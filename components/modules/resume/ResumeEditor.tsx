@@ -23,9 +23,9 @@ type ResumeEditorProps = {
 }
 
 export const ResumeEditor = ({ defaultValues, userId, templateHtml }: ResumeEditorProps) => {
-  const [isFormChanged, setIsFormChanged ] = React.useState(false)
   const [isPendingUpdateTemplate, startUpdateTemplateTransition] = React.useTransition()
   const formReinitialized = React.useRef(false)
+  const [resumeTemplate, setResumeTemplate] = React.useState(templateHtml)
 
   const { data: resumeDetails } = useResumeDetails({
     enabled: isEmpty(defaultValues),
@@ -33,7 +33,6 @@ export const ResumeEditor = ({ defaultValues, userId, templateHtml }: ResumeEdit
       return !data ? 1000 : false
     },
   })
-  const shouldRefetchTemplate = isFormChanged && !isPendingUpdateTemplate
 
   const formReturn = useForm<ResumeFormValues>({
     defaultValues,
@@ -48,16 +47,16 @@ export const ResumeEditor = ({ defaultValues, userId, templateHtml }: ResumeEdit
       reset(resumeDetails)
       formReinitialized.current = true
     }
-  }, [reset, resumeDetails])
+  }, [defaultValues, reset, resumeDetails])
 
 
   const handleDebounceUpdateResume = (data: ResumeFormValues) => {
     if (!userId || !data) {
       return
     }
-    startUpdateTemplateTransition(() => {
-      updateResume(data, userId)
-      setIsFormChanged(true)
+    startUpdateTemplateTransition(async () => {
+      const newData = await updateResume(data, userId)
+      setResumeTemplate(newData.templateHtml)
     })
   }
 
@@ -84,7 +83,7 @@ export const ResumeEditor = ({ defaultValues, userId, templateHtml }: ResumeEdit
         </div>
       </Flex>
       <Flex className="sticky right-0 top-12 h-screen flex-1 p-4">
-        <ResumePreview resumeHtmlData={templateHtml} shouldRefetchTemplate={shouldRefetchTemplate}/>
+        <ResumePreview resumeHtmlData={resumeTemplate} isLoading={isPendingUpdateTemplate}/>
       </Flex>
 
       <AlertDialog open={!defaultValues && !resumeDetails}>

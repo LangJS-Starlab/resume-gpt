@@ -8,22 +8,11 @@ import { Icons } from '@/components/Icons';
 
 type ResumePreviewProps = {
   resumeHtmlData?: string
-  shouldRefetchTemplate: boolean
+  isLoading: boolean
 }
 
-export const ResumePreview = ({ resumeHtmlData, shouldRefetchTemplate }: ResumePreviewProps) => {
-  const { data, isRefetching, refetch } = useResumeTemplate()
-  const resumeHtml = data?.resumeHtmlData || resumeHtmlData
-
-  React.useEffect(() => {
-    if (!shouldRefetchTemplate) {
-      return
-    }
-
-    refetch()
-  }, [shouldRefetchTemplate, refetch])
-
-  if (!resumeHtml) {
+export const ResumePreview = ({ resumeHtmlData, isLoading }: ResumePreviewProps) => {
+  if (!resumeHtmlData) {
     return null
   }
 
@@ -46,12 +35,12 @@ export const ResumePreview = ({ resumeHtmlData, shouldRefetchTemplate }: ResumeP
           </div>
         </Link>
         {
-          isRefetching && (
+          isLoading && (
             <Icons.spinner size={22} className="absolute left-0 top-4 mr-2 h-4 w-4 animate-spin" />
           )
         }
       </Flex>
-      <div dangerouslySetInnerHTML={{__html: resumeHtml}}/>
+      <div dangerouslySetInnerHTML={{__html: resumeHtmlData}}/>
     </ScrollArea>
   );
 }

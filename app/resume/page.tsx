@@ -5,6 +5,7 @@ import { getCurrentUser } from "@/lib/session"
 import { redirect } from "next/navigation"
 import { createResume } from "@/lib/open-ai"
 import { GithubProfile } from "next-auth/providers/github"
+import { renderResumeTemplate } from "@/lib/templates";
 
 export default async function ResumePage() {
   const userSession = await getCurrentUser()
@@ -14,11 +15,12 @@ export default async function ResumePage() {
   }
 
   const user = await getUser()
-  console.log("🚀 ~ file: page.tsx:17 ~ ResumePage ~ user:", user)
   const resumeData = user?.resumeData as (ResumeFormValues | undefined)
   const userId = user?.id
   const account = userId ? await getAccount(userId) : null
   const profileData = account?.profileData
+  const resumeHtmlString = resumeData ? renderResumeTemplate(resumeData) : ''
+
   if (profileData && !resumeData) {
     createResume(profileData as GithubProfile).then(data => {
       data && updateUserResumeData(data, userId)
@@ -28,6 +30,6 @@ export default async function ResumePage() {
   }
 
   return (
-    <ResumeEditor userId={userId} defaultValues={resumeData}/>
+    <ResumeEditor userId={userId} defaultValues={resumeData} templateHtml={resumeHtmlString}/>
   )
 }
