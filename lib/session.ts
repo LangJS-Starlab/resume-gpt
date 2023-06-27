@@ -1,11 +1,11 @@
 import { cookies, headers } from 'next/headers';
-import { getServerSession } from "next-auth/next"
+import { getServerSession as getServerSessionNextAuth } from "next-auth/next"
 
 import { authOptions } from "@/lib/auth"
 
 // Workaround for: https://github.com/nextauthjs/next-auth/issues/7486
 // so that we can call getServerSession in a server action from a client component
-export const getServerSessionZ = async () => {
+export const getServerSession = async () => {
   const req = {
     headers: Object.fromEntries(headers() as Headers),
     cookies: Object.fromEntries(
@@ -22,7 +22,6 @@ export const getServerSessionZ = async () => {
 };
 
 export async function getCurrentUser() {
-  const session = await getServerSession(authOptions)
-
+  const session = await getServerSession()
   return session?.user
 }

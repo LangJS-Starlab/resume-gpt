@@ -18,11 +18,12 @@ import { UserId } from '@/types/next-auth';
 
 type ResumeEditorProps = {
   defaultValues?: ResumeFormValues
-  userId?: UserId
   templateHtml?: string
 }
 
-export const ResumeEditor = ({ defaultValues, userId, templateHtml }: ResumeEditorProps) => {
+const REFETCH_RESUME_DETAILS_INTERVAL = 4000
+
+export const ResumeEditor = ({ defaultValues, templateHtml }: ResumeEditorProps) => {
   const [isPendingUpdateTemplate, startUpdateTemplateTransition] = React.useTransition()
   const formReinitialized = React.useRef(false)
   const [resumeTemplate, setResumeTemplate] = React.useState(templateHtml)
@@ -30,7 +31,7 @@ export const ResumeEditor = ({ defaultValues, userId, templateHtml }: ResumeEdit
   const { data: resumeDetails } = useResumeDetails({
     enabled: isEmpty(defaultValues),
     refetchInterval: (data) => {
-      return !data ? 1000 : false
+      return !data ? REFETCH_RESUME_DETAILS_INTERVAL : false
     },
   })
 
@@ -51,11 +52,11 @@ export const ResumeEditor = ({ defaultValues, userId, templateHtml }: ResumeEdit
 
 
   const handleDebounceUpdateResume = (data: ResumeFormValues) => {
-    if (!userId || !data) {
+    if (!data) {
       return
     }
     startUpdateTemplateTransition(async () => {
-      const newData = await updateResume(data, userId)
+      const newData = await updateResume(data)
       setResumeTemplate(newData.templateHtml)
     })
   }

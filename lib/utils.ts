@@ -10,7 +10,6 @@ export function cn(...inputs: ClassValue[]) {
 export function parseOpenAIJsonResponse<T extends Record<string, unknown>>(
   response: CreateChatCompletionResponse
 ): { data: T | null; isComplete: boolean } {
-  console.log("🚀 ~ file: utils.ts:14 ~ response.choices:", response.choices)
   const text = response.choices[0]?.message?.content?.trim() ?? null
   
   if (!text) {

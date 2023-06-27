@@ -18,7 +18,14 @@ export const ResumePreview = ({ resumeHtmlData, isLoading }: ResumePreviewProps)
 
   return (
     <ScrollArea  className="relative h-full w-full">
-      <Flex justify="end" className='absolute right-2 top-4 mb-2'>
+      <Flex justify="end" className='absolute right-2 top-4 mb-2 w-full'>
+        {
+          isLoading && (
+            <div className='absolute left-6 top-1 mr-2 flex items-center'>
+              <Icons.spinner size={22} className="animate-spin" />
+            </div>
+          )
+        }
         <Link
           href="/resume/download"
           target="_blank"
@@ -34,11 +41,6 @@ export const ResumePreview = ({ resumeHtmlData, isLoading }: ResumePreviewProps)
           Download PDF
           </div>
         </Link>
-        {
-          isLoading && (
-            <Icons.spinner size={22} className="absolute left-0 top-4 mr-2 h-4 w-4 animate-spin" />
-          )
-        }
       </Flex>
       <div dangerouslySetInnerHTML={{__html: resumeHtmlData}}/>
     </ScrollArea>
