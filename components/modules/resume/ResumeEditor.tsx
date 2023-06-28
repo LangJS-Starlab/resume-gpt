@@ -83,9 +83,9 @@ export const ResumeEditor = ({ defaultValues, templateHtml }: ResumeEditorProps)
           </div>
         </div>
       </Flex>
-      {/* <Flex className="sticky right-0 top-12 h-screen flex-1 p-4">
+      <Flex className="sticky right-0 top-12 h-screen flex-1 p-4">
         <ResumePreview resumeHtmlData={resumeTemplate} isLoading={isPendingUpdateTemplate}/>
-      </Flex> */}
+      </Flex>
 
       <AlertDialog open={!defaultValues && !resumeDetails}>
         <AlertDialogContent>
