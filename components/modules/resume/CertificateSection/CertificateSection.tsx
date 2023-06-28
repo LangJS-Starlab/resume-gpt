@@ -13,9 +13,6 @@ import { CertificateField } from './CertificateField';
 
 export const CertificateSection = () => {
   const [activeItem, setActiveItem] = React.useState<string>();
-  const [parent] = useAutoAnimate({
-    duration: 200,
-  });
   const { register, formState, control, setValue } =
     useFormContext<ResumeFormValues>();
   const fieldProps = { register, formState };
@@ -67,7 +64,7 @@ export const CertificateSection = () => {
           value={activeItem}
           onValueChange={onAccordionValueChange}
         >
-          <div ref={parent}>
+          <div>
             {fields.map((field, index) => {
               const props = {
                 field,
