@@ -13,9 +13,6 @@ import { ProjectField } from './ProjectField';
 
 export const ProjectSection = () => {
   const [activeItem, setActiveItem] = React.useState<string>();
-  const [parent] = useAutoAnimate({
-    duration: 200,
-  });
   const { register, formState, control, setValue } =
     useFormContext<ResumeFormValues>();
   const fieldProps = { register, formState };
@@ -70,7 +67,7 @@ export const ProjectSection = () => {
           value={activeItem}
           onValueChange={onAccordionValueChange}
         >
-          <div ref={parent}>
+          <div>
             {fields.map((field, index) => {
               const props = {
                 field,
