@@ -17,7 +17,7 @@ function downloadPdfFromBase64(base64Data: string) {
 }
 
 export const ResumePreview = ({ resumeHtmlData, isLoading }: ResumePreviewProps) => {
-  const { refetch } = useResumePdf({
+  const { refetch, isLoading: isDownloadingPdf } = useResumePdf({
     enabled: false,
     onSuccess(data) {
       downloadPdfFromBase64(data.data)
@@ -43,8 +43,12 @@ export const ResumePreview = ({ resumeHtmlData, isLoading }: ResumePreviewProps)
           size="sm"
           onClick={() => refetch()}
         >
-          <Icons.download size={22} className="mr-2 h-4 w-4" />
-          Download PDF
+          {isDownloadingPdf ?<Icons.spinner size={22}/> : (
+            <span>
+              <Icons.download size={22} className="mr-2 h-4 w-4" />
+              Download PDF
+            </span>
+          )}
         </Button>
       </Flex>
       <div dangerouslySetInnerHTML={{__html: resumeHtmlData}}/>
