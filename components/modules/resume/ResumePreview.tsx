@@ -1,6 +1,6 @@
 import React from 'react';
 import { useResumePdf } from '@/lib/queries';
-import { Button, buttonVariants } from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import { Flex } from '@/components/ui/Flex';
 import { ScrollArea } from '@/components/ui/ScrollArea';

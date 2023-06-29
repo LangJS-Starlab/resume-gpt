@@ -15,6 +15,9 @@ import { useResumeDetails, useResumeTemplate } from '@/lib/queries';
 import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/AlertDialog';
 import { Icons } from '@/components/Icons';
 import { UserId } from '@/types/next-auth';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/Sheet';
+import { Button, buttonVariants } from '@/components/ui/Button';
+import { cn } from '@/lib/utils';
 
 type ResumeEditorProps = {
   defaultValues?: ResumeFormValues
@@ -73,19 +76,31 @@ export const ResumeEditor = ({ defaultValues, templateHtml }: ResumeEditorProps)
   }, [debounceUpdateResume, watch])
 
   return (
-    <Flex className="container relative">
+    <Flex className="container relative p-2 lg:p-4">
       <Flex className="flex-1">
         <div className="w-full">
-          <div className="mx-auto py-4 lg:max-w-2xl">
+          <div className="mx-auto lg:max-w-2xl lg:py-4">
             <FormProvider {...formReturn}>
               <ResumeForm />
             </FormProvider>
           </div>
         </div>
       </Flex>
-      <Flex className="sticky right-0 top-12 h-screen flex-1 p-4">
+      <Flex className="sticky right-0 top-12 hidden h-screen flex-1 p-4 lg:block">
         <ResumePreview resumeHtmlData={resumeTemplate} isLoading={isPendingUpdateTemplate}/>
       </Flex>
+
+      <Sheet>
+        <SheetTrigger  className={cn(buttonVariants({
+          size: "sm",
+          variant: "default",
+        }), 'fixed bottom-2 right-4 block lg:hidden')}>
+          Preview Resume
+        </SheetTrigger>
+        <SheetContent className='w-full'>
+          <ResumePreview resumeHtmlData={resumeTemplate} isLoading={isPendingUpdateTemplate}/>
+        </SheetContent>
+      </Sheet>
 
       <AlertDialog open={!defaultValues && !resumeDetails}>
         <AlertDialogContent>

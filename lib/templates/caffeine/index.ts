@@ -58,7 +58,12 @@ const getHandleInstance = () => {
       },
 
       formatDate: date => {
-        return format(new Date(date), 'MMM yyyy')
+        try {
+          const formattedDate = format(new Date(date), 'MMM yyyy')
+          return formattedDate
+        } catch (error) {
+          return ''
+        }
       },
 
       lowercase: str => {

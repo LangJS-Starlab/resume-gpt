@@ -52,7 +52,7 @@ export function MonthYearDateField<T extends FieldValues>(
     if (!month || !year) {
       return;
     }
-    const date = new Date(year + '-' + month);
+    const date = new Date().setFullYear(parseInt(year), parseInt(month) - 1);
     const isoDateString = formatISO(date);
     setValue(name, isoDateString);
   }, [month, name, setValue, year]);
