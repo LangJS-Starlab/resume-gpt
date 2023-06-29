@@ -44,10 +44,10 @@ export const ResumePreview = ({ resumeHtmlData, isLoading }: ResumePreviewProps)
           onClick={() => refetch()}
         >
           {isDownloadingPdf ?<Icons.spinner size={22}/> : (
-            <span>
+            <Flex>
               <Icons.download size={22} className="mr-2 h-4 w-4" />
               Download PDF
-            </span>
+            </Flex>
           )}
         </Button>
       </Flex>
