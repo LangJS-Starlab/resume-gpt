@@ -50,9 +50,9 @@ export default async function IndexPage() {
             Features
           </h2>
           <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            This project is an experiment to see how a modern app, with features
-            like auth, API routes, and static pages would work in
-            Next.js 13 app dir.
+            This project is an experiment to see how a modern web app, with features
+            like auth, route handlers, server actions, and static pages would work in
+            Next.js 13 app router.
           </p>
         </div>
         <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
@@ -64,7 +64,7 @@ export default async function IndexPage() {
               <div className="space-y-2">
                 <h3 className="font-bold">Next.js 13</h3>
                 <p className="text-sm text-muted-foreground">
-                  App dir, Routing, Layouts, Loading UI, API routes and Server Actions.
+                  App router, Routing, Layouts, Route Handlers and Server Actions.
                 </p>
               </div>
             </div>
@@ -76,8 +76,8 @@ export default async function IndexPage() {
               </svg>
               <div className="space-y-2">
                 <h3 className="font-bold">React 18</h3>
-                <p className="text-sm">
-                  Server and Client Components. Use hook.
+                <p className="text-sm text-muted-foreground">
+                  Server and Client Components. New Hooks.
                 </p>
               </div>
             </div>
@@ -103,7 +103,7 @@ export default async function IndexPage() {
               <div className="space-y-2">
                 <h3 className="font-bold">Components</h3>
                 <p className="text-sm text-muted-foreground">
-                  UI components built using Radix UI, Shadcn and styled with Tailwind
+                  Radix UI, Shadcn, React Hook Form and styled with Tailwind
                   CSS.
                 </p>
               </div>
