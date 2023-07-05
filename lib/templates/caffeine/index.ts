@@ -6,7 +6,7 @@ import { Resume, ResumeTheme } from '@/components/modules/resume';
 
 let handleBarInstance: typeof Handlebars
 
-const formatAddress = (a: any) => {
+const formatAddress = (a: Record<string, unknown>) => {
   const lines = []
   if (a.address) lines.push(a.address)
   if (a.address2) lines.push(a.address2)

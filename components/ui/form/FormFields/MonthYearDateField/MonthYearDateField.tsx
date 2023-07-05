@@ -1,7 +1,6 @@
 import { Label } from '@/components/ui/Label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
 import formatISO from 'date-fns/formatISO';
-import get from 'lodash/get';
 import React from 'react';
 import { FieldValues, SetFieldValue } from 'react-hook-form';
 
@@ -40,7 +39,6 @@ export function MonthYearDateField<T extends FieldValues>(
     setValue,
     monthSelectLabel = 'Select month',
     yearSelectLabel = 'Select year',
-    formState,
     ...rest
   } = props;
   const monthValue = value ? `${new Date(value).getMonth() + 1}` : undefined;

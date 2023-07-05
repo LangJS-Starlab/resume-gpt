@@ -13,9 +13,8 @@ import {
 } from 'react-hook-form';
 import { ResumeFormValues } from '../types';
 import { WorkHighlightField, WorkHighlightFieldProps } from './WorkHighlightField';
-import { Section } from '@/components/ui/Section';
 import { Flex } from '@/components/ui/Flex';
-import { Heading4, Paragraph } from '@/components/ui/Typography';
+import { Paragraph } from '@/components/ui/Typography';
 
 type WorkExperienceFieldProps = {
   field: FieldArrayWithId<ResumeFormValues, 'work'>;

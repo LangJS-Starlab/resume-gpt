@@ -12,6 +12,9 @@ import { ReferenceField } from './ReferenceField';
 
 export const ReferenceSection = () => {
   const [activeItem, setActiveItem] = React.useState<string>();
+  const [parent] = useAutoAnimate({
+    duration: 200,
+  });
   const { register, formState, control, setValue } =
     useFormContext<ResumeFormValues>();
   const fieldProps = { register, formState };
@@ -61,7 +64,7 @@ export const ReferenceSection = () => {
           value={activeItem}
           onValueChange={onAccordionValueChange}
         >
-          <div>
+          <div ref={parent}>
             {fields.map((field, index) => {
               const props = {
                 field,

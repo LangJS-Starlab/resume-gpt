@@ -43,7 +43,7 @@ export const updateUserResumeData = async (resumeData: ResumeFormValues) => {
       id: user?.id,
     },
     data: {
-      resumeData: resumeData as any
+      resumeData
     },
   })
 

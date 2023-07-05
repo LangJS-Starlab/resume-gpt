@@ -11,12 +11,11 @@ import { updateResume } from './actions';
 import { ResumeForm } from './ResumeForm';
 import { Flex } from '@/components/ui/Flex';
 import { ResumePreview } from './ResumePreview';
-import { useResumeDetails, useResumeTemplate } from '@/lib/queries';
+import { useResumeDetails } from '@/lib/queries';
 import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/AlertDialog';
 import { Icons } from '@/components/Icons';
-import { UserId } from '@/types/next-auth';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/Sheet';
-import { Button, buttonVariants } from '@/components/ui/Button';
+import { buttonVariants } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 
 type ResumeEditorProps = {

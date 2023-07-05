@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: "Error page",
 }
 
-export default function ErrorPage(props: {}) {
+export default function ErrorPage() {
   return (
     <>
       <p>error</p>

@@ -3,7 +3,6 @@ import { redirect } from "next/navigation"
 import Link from "next/link"
 import { UserAuthForm } from "@/components/modules/auth"
 import { Icons } from "@/components/Icons"
-import { authOptions } from "@/lib/auth"
 import { getCurrentUser } from "@/lib/session"
 import { siteConfig } from "@/config/site"
 

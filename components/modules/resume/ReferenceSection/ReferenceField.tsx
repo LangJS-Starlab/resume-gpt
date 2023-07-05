@@ -1,9 +1,8 @@
 import { Icons } from '@/components/Icons';
 import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/Accordion';
 import { Button } from '@/components/ui/Button';
-import { FormFieldProps, InputField, MonthYearDateField, TextAreaField } from '@/components/ui/form';
+import { FormFieldProps, InputField, TextAreaField } from '@/components/ui/form';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/Tooltip';
-import { set } from 'lodash';
 import React from 'react';
 import {
   FieldArrayWithId,
@@ -11,14 +10,6 @@ import {
   UseFormSetValue,
 } from 'react-hook-form';
 import { ResumeFormValues } from '../types';
-
-type EducationFieldProps = {
-  field: FieldArrayWithId<ResumeFormValues, 'education'>;
-  index: number;
-  fieldProps: Omit<FormFieldProps<ResumeFormValues>, 'name'>;
-  setValue: UseFormSetValue<ResumeFormValues>;
-  remove: UseFieldArrayRemove;
-};
 
 type ReferenceFieldProps = {
   field: FieldArrayWithId<ResumeFormValues, 'references'>;

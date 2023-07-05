@@ -11,14 +11,6 @@ import {
 } from 'react-hook-form';
 import { ResumeFormValues } from '../types';
 
-type EducationFieldProps = {
-  field: FieldArrayWithId<ResumeFormValues, 'education'>;
-  index: number;
-  fieldProps: Omit<FormFieldProps<ResumeFormValues>, 'name'>;
-  setValue: UseFormSetValue<ResumeFormValues>;
-  remove: UseFieldArrayRemove;
-};
-
 type ProjectFieldProps = {
   field: FieldArrayWithId<ResumeFormValues, 'projects'>;
   index: number;

@@ -2,7 +2,6 @@
 
 import { Resume, ResumeFormValues } from "./types"
 import { updateUserResumeData } from '@/lib/db';
-import { UserId } from "@/types/next-auth";
 import { renderResumeTemplate } from "@/lib/templates";
  
 export async function updateResume(values: ResumeFormValues) {

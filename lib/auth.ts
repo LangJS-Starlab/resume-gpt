@@ -4,7 +4,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import {
   env
 } from '@/env.mjs';
-import { createAccount, createUser, db, updateUserResumeData } from "./db";
+import { createAccount, createUser, db } from "./db";
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(db),
