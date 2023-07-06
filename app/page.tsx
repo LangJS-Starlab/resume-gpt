@@ -2,13 +2,14 @@ import { SiteHeader } from "@/components/SiteHeader"
 import { buttonVariants } from "@/components/ui/Button"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 import Link from "next/link"
 
 export default async function IndexPage() {
   return (
     <>
       <SiteHeader />
-      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
+      <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-24">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <Link
             href={siteConfig.links.twitter}
@@ -37,6 +38,9 @@ export default async function IndexPage() {
             </Link>
           </div>
         </div>
+      </section>
+      <section className="flex justify-center px-4">
+        <Image src='/resume-gpt-home-screen.webp' height={100} width={1200} alt="Resume GPT"/>
       </section>
       <section
         id="features"
