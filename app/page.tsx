@@ -4,7 +4,6 @@ import { HeroBannerImage } from "@/components/modules/home/HeroBannerImage"
 import { buttonVariants } from "@/components/ui/Button"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
-import Image from "next/image"
 import Link from "next/link"
 
 export default async function IndexPage() {
