@@ -15,6 +15,7 @@ import { ResumeFormValues } from '../types';
 import { WorkHighlightField, WorkHighlightFieldProps } from './WorkHighlightField';
 import { Flex } from '@/components/ui/Flex';
 import { Paragraph } from '@/components/ui/Typography';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 type WorkExperienceFieldProps = {
   field: FieldArrayWithId<ResumeFormValues, 'work'>;
@@ -31,6 +32,9 @@ export const WorkExperienceField = ({
   setValue,
   remove,
 }: WorkExperienceFieldProps) => {
+  const [parent] = useAutoAnimate({
+    duration: 200,
+  });
   const { control } = useFormContext<ResumeFormValues>();
   const [title, setTitle] = React.useState('');
 
@@ -128,7 +132,7 @@ export const WorkExperienceField = ({
                 Add
               </Button>
             </Flex>
-            <div className='px-4'>
+            <div ref={parent} className='px-4'>
               {highlightFields.map((field, highlightIndex) => {
                 const props: WorkHighlightFieldProps = {
                   workIndex: index,
