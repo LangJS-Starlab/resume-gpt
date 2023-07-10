@@ -23,24 +23,33 @@ export const ResumePreview = ({ resumeHtmlData, isLoading }: ResumePreviewProps)
     },
   })
 
+  const onDownloadButtonClick = () => {
+    refetch()
+  }
+
   if (!resumeHtmlData) {
     return null
   }
 
   return (
     <ScrollArea  className="relative h-full w-full">
-      <Flex justify="end" className='absolute right-2 top-4 mb-2 w-full'>
+      <Flex justify="end" className='absolute mb-2 h-10 w-full bg-background shadow-md'>
         {
-          isLoading && (
-            <div className='absolute left-6 top-1 mr-2 flex items-center'>
-              <Icons.spinner size={22} className="animate-spin" />
+          isLoading ? (
+            <div className='absolute left-0 top-1 mr-2 flex items-center justify-center'>
+              <Icons.spinner size={18} className="animate-spin" />
+              <p className='ml-2 mt-0'>Saving</p>
             </div>
-          )
+          ) : <div className='absolute left-0 top-1 mr-2 flex items-center justify-center'>
+            <Icons.checkCircle size={18} />
+            <p className='ml-2 mt-0'>Saved</p>
+          </div>
         }
         <Button
           variant="secondary"
           size="sm"
-          onClick={() => refetch()}
+          className='absolute'
+          onClick={onDownloadButtonClick}
         >
           {isDownloadingPdf ?<Icons.spinner size={22}/> : (
             <Flex>
@@ -50,7 +59,7 @@ export const ResumePreview = ({ resumeHtmlData, isLoading }: ResumePreviewProps)
           )}
         </Button>
       </Flex>
-      <div dangerouslySetInnerHTML={{__html: resumeHtmlData}}/>
+      <div className='pt-10' dangerouslySetInnerHTML={{__html: resumeHtmlData}}/>
     </ScrollArea>
   );
 }

@@ -11,7 +11,7 @@ export const FeatureItems = () => {
       initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      viewport={{ once: true }}>
+      viewport={{ once: true, margin: "200px 0px 0px 0px" }}>
       <div className="relative overflow-hidden rounded-lg border bg-background p-2">
         <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
           <svg viewBox="0 0 24 24" className="h-12 w-12 fill-current">
