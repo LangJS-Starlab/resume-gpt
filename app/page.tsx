@@ -1,4 +1,5 @@
 import { SiteHeader } from "@/components/SiteHeader"
+import { DescriptionHeadingText } from "@/components/modules/home/DescriptionHeadingText"
 import { FeatureItems } from "@/components/modules/home/FeatureItems"
 import { HeroBannerImage } from "@/components/modules/home/HeroBannerImage"
 import { buttonVariants } from "@/components/ui/Button"
@@ -22,9 +23,7 @@ export default async function IndexPage() {
           <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
            Resume GPT
           </h1>
-          <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-            Create a perfect resume in seconds and land your dream job with Resume GPT.
-          </p>
+          <DescriptionHeadingText/>
           <div className="space-x-4">
             <Link href="/resume" className={cn(buttonVariants({ size: "lg" }))}>
               Get Started
