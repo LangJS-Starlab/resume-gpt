@@ -6,7 +6,7 @@ const nextConfig = {
     appDir: true,
     serverActions: true,
   },
-  webpack: (config, { isServer }) => {
+  webpack: (config) => {
     config.module.rules.push({
       test: /\.html$/,
       loader: 'raw-loader',
