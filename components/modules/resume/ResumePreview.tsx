@@ -13,6 +13,11 @@ type ResumePreviewProps = {
 function downloadPdfFromBase64(base64Data: string) {
   const pdfWindow = window.open("")
   pdfWindow?.document.write("<iframe frameBorder='0' width='100%' height='100%' src='"+encodeURI(base64Data)+"'></iframe>")
+  pdfWindow?.document.close();
+  setTimeout(() => {
+    pdfWindow?.focus();
+    pdfWindow?.print(); 
+  }, 100);
 }
 
 export const ResumePreview = ({ resumeHtmlData, isLoading }: ResumePreviewProps) => {
@@ -23,7 +28,7 @@ export const ResumePreview = ({ resumeHtmlData, isLoading }: ResumePreviewProps)
     },
   })
 
-  const onDownloadButtonClick = () => {
+  const onPrintButtonClick = () => {
     refetch()
   }
 
@@ -46,17 +51,17 @@ export const ResumePreview = ({ resumeHtmlData, isLoading }: ResumePreviewProps)
           </div>
         }
         <Button
-          variant="secondary"
+          variant="outline"
           size="sm"
           className='absolute'
-          onClick={onDownloadButtonClick}
+          onClick={onPrintButtonClick}
         >
-          {isDownloadingPdf ?<Icons.spinner size={22}/> : (
-            <Flex>
-              <Icons.download size={22} className="mr-2 h-4 w-4" />
-              Download PDF
-            </Flex>
-          )}
+          <Flex>
+            {isDownloadingPdf ?<Icons.spinner size={22} className="mr-2 h-4 w-4"/> : (
+              <Icons.printer size={22} className="mr-2 h-4 w-4" />
+            )}
+              Print Resume
+          </Flex>
         </Button>
       </Flex>
       <div className='pt-10' dangerouslySetInnerHTML={{__html: resumeHtmlData}}/>
