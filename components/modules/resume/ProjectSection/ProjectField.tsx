@@ -84,7 +84,7 @@ export const ProjectField = ({
             />
           </div>
           <TextAreaField
-            name={`projects.${index}.description` as const}
+            name={`projects.${index}.summary` as const}
             label="Description"
             rows={5}
             {...fieldProps}

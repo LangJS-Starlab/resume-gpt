@@ -90,10 +90,6 @@ export const ResumeSchema = z
           .object({
             company: z.string().describe('e.g. Facebook').optional(),
             location: z.string().describe('e.g. Menlo Park, CA').optional(),
-            description: z
-              .string()
-              .describe('e.g. Social Media Company')
-              .optional(),
             position: z.string().describe('e.g. Software Engineer').optional(),
             url: z
               .string()
@@ -386,7 +382,7 @@ export const ResumeSchema = z
         z
           .object({
             name: z.string().describe('e.g. The World Wide Web').optional(),
-            description: z
+            summary: z
               .string()
               .describe(
                 'Short summary of project. e.g. Collated works of 2017.'

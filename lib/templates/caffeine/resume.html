@@ -171,10 +171,8 @@
 
     .caffeine ul {
       margin: 10px 0 0;
-      -webkit-padding-start: 0;
-    }
-    .caffeine ul li {
-      padding-left: 10px;
+      list-style: circle;
+      -webkit-padding-start: 24px;
     }
     .caffeine ul.minimal {
       list-style: none;
@@ -565,8 +563,8 @@
                     <h4>{{position}}</h4>
                     {{/if}}
         
-                    {{#if description}}
-                    <p class="summary">{{description}}</p>
+                    {{#if summary}}
+                    <p class="summary">{{summary}}</p>
                     {{/if}}
         
                     {{#if highlights.length}}
@@ -624,8 +622,8 @@
                     <h6>({{type}})</h6>
                     {{/if}}
         
-                    {{#if description}}
-                    <p class="summary">{{description}}</p>
+                    {{#if summary}}
+                    <p class="summary">{{summary}}</p>
                     {{/if}}
         
                     {{#if highlights.length}}

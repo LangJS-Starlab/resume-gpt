@@ -105,7 +105,7 @@ export const WorkExperienceField = ({
             />
           </div>
           <TextAreaField
-            name={`work.${index}.description` as const}
+            name={`work.${index}.summary` as const}
             label="Description"
             rows={5}
             {...fieldProps}
